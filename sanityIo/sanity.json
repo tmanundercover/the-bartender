@@ -1,0 +1,65 @@
+{
+  "root": true,
+  "api": {
+    "projectId": "4u89wsbx",
+    "dataset": "production"
+  },
+  "project": {
+    "name": "Transformative Healing and Wellness"
+  },
+  "__experimental_spaces": [
+    {
+      "name": "production",
+      "title": "Production",
+      "api": {
+        "projectId": "4u89wsbx",
+        "dataset": "production"
+      }
+    },
+    {
+      "name": "development",
+      "title": "Development",
+      "default": true,
+      "api": {
+        "projectId": "4u89wsbx",
+        "dataset": "development"
+      }
+    }
+  ],
+  "plugins": [
+    "@sanity/base",
+    "@sanity/components",
+    "@sanity/default-layout",
+    "@sanity/default-login",
+    "@sanity/desk-tool",
+    "color-list",
+    "@sanity/code-input",
+    "json-input",
+    "media"
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        "@sanity/vision"
+      ]
+    }
+  },
+  "parts": [
+    {
+      "name": "part:@sanity/base/schema",
+      "path": "./schemas/schema"
+    },
+    {
+      "name": "part:@sanity/desk-tool/structure",
+      "path": "./parts/deskStructure.js"
+    },
+    {
+      "implements": "part:@sanity/form-builder/input/image/asset-sources",
+      "path": "./parts/assetSources.js"
+    },
+    {
+      "implements": "part:@sanity/form-builder/input/file/asset-sources",
+      "path": "./parts/assetSources.js"
+    }
+  ]
+}

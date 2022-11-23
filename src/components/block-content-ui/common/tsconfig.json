@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "rootDir": "../",
+    "outDir": "../sanityIo/dist/",
+    "target": "es5", // Or whatever you want
+    "module": "es2015", // Or whatever you want
+    "declaration": true,
+    "declarationMap": true,
+    "composite": true,
+    "jsx": "react",
+    "moduleResolution": "Node",
+    "allowSyntheticDefaultImports": true,
+    "lib": ["es6", "dom"],
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true
+  },
+  "files": [
+    "../../@types/block-content-to-react.d.ts"
+  ]
+}
+// https://wallis.dev/blog/typescript-project-references
+// This file was made using the aboved linked tutorial
+// This is to share type script type declarations and code accross front and backend
+//declaration: Generates a declaration file that the frontend and backend apps can use to reference items in the common app.
+//composite: Ensures TypeScript can quickly determine where to find the outputs of the referenced project
+//declarationMap: Enables editor features like “Go to Definition” and Rename to transparently navigate and edit code across project boundaries in supported editors
