@@ -1,5 +1,5 @@
 import {makeStyles} from "@material-ui/core";
-import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
+import BartenderTheme from "../../../theme/transform-hw/BartenderTheme";
 
 export const useThwStyles = makeStyles({
     fullscreen: {
@@ -16,14 +16,14 @@ export const useThwStyles = makeStyles({
         "& .MuiFilledInput-adornedEnd": {
             border: "1px solid white",
             paddingRight: 0,
-            borderTopRightRadius: TransformHWTheme.shape.borderRadius,
-            borderBottomRightRadius: TransformHWTheme.shape.borderRadius
+            borderTopRightRadius: BartenderTheme.shape.borderRadius,
+            borderBottomRightRadius: BartenderTheme.shape.borderRadius
         },
         "& .MuiOutlinedInput-adornedEnd": {
             border: "1px solid white",
             paddingRight: 0,
-            borderTopRightRadius: TransformHWTheme.shape.borderRadius,
-            borderBottomRightRadius: TransformHWTheme.shape.borderRadius
+            borderTopRightRadius: BartenderTheme.shape.borderRadius,
+            borderBottomRightRadius: BartenderTheme.shape.borderRadius
         },
         "& .MuiInputBase-input": {
             borderRightWidth: 0,
@@ -48,7 +48,7 @@ export const useThwStyles = makeStyles({
         backgroundImage: (props: any) => `url(${props.bgImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        backgroundColor: TransformHWTheme.palette.background.default
+        backgroundColor: BartenderTheme.palette.background.default
     },
     fullSection: {
         width: 'calc(100vw)',

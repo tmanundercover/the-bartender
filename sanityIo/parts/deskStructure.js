@@ -15,6 +15,21 @@ export default () =>
                 .title('Page')
                 .child(createSuperPane('homePage', S)),
             S.listItem()
+                .title('Cocktail')
+                .child(createSuperPane('Cocktail', S)),
+            S.listItem()
+                .title('Garnish')
+                .child(createSuperPane('Garnish', S)),
+            S.listItem()
+                .title('Glass')
+                .child(createSuperPane('Glass', S)),
+            S.listItem()
+                .title('Ingredient')
+                .child(createSuperPane('Ingredient', S)),
+            S.listItem()
+                .title('Instruction')
+                .child(createSuperPane('Instruction', S)),
+            S.listItem()
                 .title('Menu Container')
                 .child(createSuperPane('menuContainer', S)),
             S.listItem()

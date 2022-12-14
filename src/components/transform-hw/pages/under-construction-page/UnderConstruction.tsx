@@ -1,7 +1,7 @@
 import React, {ChangeEvent, FunctionComponent, useEffect, useState} from 'react'
 import {Grid, TextField, Typography, useMediaQuery} from '@material-ui/core'
 import {useThwStyles} from "../Styles";
-import TransformHWTheme, {COLORS} from "../../../../theme/transform-hw/TransformHWTheme";
+import BartenderTheme, {COLORS} from "../../../../theme/transform-hw/BartenderTheme";
 import CountdownToLaunch from "./CountdownToLaunch";
 import therapistHoldingHand from "./assets/therapistHoldingHand.jpg"
 import clsx from "clsx";
@@ -13,7 +13,7 @@ import {ButtonGroupMemberEnum} from "../../../loading-button/ButtonGroupMemberEn
 import CssFadeToColor from "../../../css-fade-to-color/CssFadeToColor";
 import {SanityRef, SanityUnderConstructionPageType} from "../../../../common/sanityIo/Types";
 import cmsClient from "../../../block-content-ui/cmsClient";
-import transformHWTheme from "../../../../theme/transform-hw/TransformHWTheme";
+import transformHWTheme from "../../../../theme/transform-hw/BartenderTheme";
 
 
 interface IProps {
@@ -24,8 +24,8 @@ interface IProps {
 const UnderConstruction: FunctionComponent<IProps> = (props) => {
     const classes = useThwStyles({bgImage: therapistHoldingHand})
 
-    const smDown = useMediaQuery(TransformHWTheme.breakpoints.down('sm'))
-    const xsDown = useMediaQuery(TransformHWTheme.breakpoints.down('xs'))
+    const smDown = useMediaQuery(BartenderTheme.breakpoints.down('sm'))
+    const xsDown = useMediaQuery(BartenderTheme.breakpoints.down('xs'))
 
     const [email, setEmail] = useState("")
     const [releaseDate, setReleaseDate] = useState<Date>()
@@ -71,16 +71,16 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
 
     const getHelperText = () => {
         if ((data || isError) && !isEmail(email)) {
-            return <Typography style={{color: TransformHWTheme.palette.error.main}} variant='subtitle1'>This is not a
+            return <Typography style={{color: BartenderTheme.palette.error.main}} variant='subtitle1'>This is not a
                 valid email address.</Typography>
         }
 
         if (data) {
-            return <Typography style={{color: TransformHWTheme.palette.success.main}} variant='subtitle1'>Thank you for
+            return <Typography style={{color: BartenderTheme.palette.success.main}} variant='subtitle1'>Thank you for
                 your submission!</Typography>
         }
         if (isError) {
-            return <Typography style={{color: TransformHWTheme.palette.error.main}} variant='subtitle1'>Please Try your
+            return <Typography style={{color: BartenderTheme.palette.error.main}} variant='subtitle1'>Please Try your
                 submission again later or contact jgreene@transformHW.org.</Typography>
         }
 
@@ -99,7 +99,7 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
             <Grid item container className={clsx(classes.fullscreen)}
                   style={{
                       position: 'absolute',
-                      paddingBottom: smDown ? 0 : TransformHWTheme.spacing(10)
+                      paddingBottom: smDown ? 0 : BartenderTheme.spacing(10)
                   }}
                   justifyContent='center' alignItems='center'>
                 <Grid container item xs={11} className={classes.spacer} justifyContent='center'>
@@ -109,14 +109,14 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
                 <Grid xs={10} container item justifyContent='center' className={classes.spacer}>
                     <CountdownToLaunch launchDate={releaseDate ?? new Date(Date.now() + 2000000000)}/>
                 </Grid>
-                <Grid container item justifyContent='center' style={{marginTop: TransformHWTheme.spacing(2.5)}}>
+                <Grid container item justifyContent='center' style={{marginTop: BartenderTheme.spacing(2.5)}}>
                     <Grid item xs={10} md={8}>
                         <Typography variant='body1' color='textSecondary'
                                     align='center'>{cmsPageData?.contentText}</Typography>
 
                     </Grid>
                 </Grid>
-                <Grid container item justifyContent='center' style={{marginTop: TransformHWTheme.spacing(5.75)}}>
+                <Grid container item justifyContent='center' style={{marginTop: BartenderTheme.spacing(5.75)}}>
                     <Grid item container justifyContent='center'>
                         <Typography color='primary' gutterBottom variant='body2'
                                     align='center' style={{marginBottom: transformHWTheme.spacing(2)}}>{cmsPageData?.subscribeText}</Typography>
@@ -148,7 +148,7 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
                         {getHelperText()}
                     </Grid>
                     <Grid item container style={{
-                        backgroundColor: xsDown ? TransformHWTheme.palette.background.default : "transparent",
+                        backgroundColor: xsDown ? BartenderTheme.palette.background.default : "transparent",
                         position: 'static',
                         bottom: 0,
                         height: "84px"

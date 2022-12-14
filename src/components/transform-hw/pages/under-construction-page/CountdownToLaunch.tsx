@@ -2,7 +2,7 @@ import React, {FunctionComponent} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Grid, Typography, useMediaQuery} from '@material-ui/core'
 import Countdown from "react-countdown";
-import TransformHWTheme, {COLORS} from "../../../../theme/transform-hw/TransformHWTheme";
+import BartenderTheme, {COLORS} from "../../../../theme/transform-hw/BartenderTheme";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     counterSection: {
@@ -20,10 +20,10 @@ interface IProps {
 }
 
 const CountdownToLaunch: FunctionComponent<IProps> = (props) => {
-    const classes = useStyles(TransformHWTheme)
+    const classes = useStyles(BartenderTheme)
     const Completionist = () => <span>Site should be launched!</span>
 
-    const smDown = useMediaQuery(TransformHWTheme.breakpoints.down('sm'))
+    const smDown = useMediaQuery(BartenderTheme.breakpoints.down('sm'))
 
     const pluralize = (subject: string) => {
         return subject + 's'

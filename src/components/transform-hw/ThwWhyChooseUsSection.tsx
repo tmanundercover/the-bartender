@@ -2,7 +2,7 @@ import React, {FunctionComponent, useState} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Divider, Grid, Typography} from '@material-ui/core'
 import {ThwWhyChooseUsItemType, ThwWhyChooseUsSectionType} from "../BlockContentTypes";
-import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
+import BartenderTheme from "../../theme/transform-hw/BartenderTheme";
 import cmsClient from "../block-content-ui/cmsClient";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 
@@ -23,7 +23,7 @@ interface IProps {
 }
 
 const ThwServicesSection: FunctionComponent<IProps> = (props) => {
-    const classes = useStyles(TransformHWTheme)
+    const classes = useStyles(BartenderTheme)
 
     const [prosList, setProsList] = useState<ThwWhyChooseUsItemType[]>()
 
@@ -50,7 +50,7 @@ const ThwServicesSection: FunctionComponent<IProps> = (props) => {
                 }}>
                 </Grid>
                 <Grid item container alignItems='center' alignContent='center' justifyContent='center' xs={12} md={7}
-                      style={{padding: TransformHWTheme.spacing(5,4, 7)}}>
+                      style={{padding: BartenderTheme.spacing(5,4, 7)}}>
                     <Grid item container style={{marginBottom: "24px"}}>
                         <Typography display='inline'  gutterBottom color='secondary' variant='h4'
                                     align='center'>{props.sectionData.sectionTitle}</Typography>

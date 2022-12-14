@@ -3,7 +3,7 @@ import {v4 as uuidv4} from 'uuid'
 import {makeStyles, Theme} from "@material-ui/core/styles"
 import {Button, Grid, Popover, Typography, useMediaQuery} from '@material-ui/core'
 import {ArrowDropDown} from "@material-ui/icons";
-import TransformHWTheme, {COLORS} from "../../../theme/transform-hw/TransformHWTheme";
+import BartenderTheme, {COLORS} from "../../../theme/transform-hw/BartenderTheme";
 import SubMenu from "./SubMenu";
 import MediaQueries from "../../../utils/mediaQueries";
 import {SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
@@ -49,13 +49,13 @@ const FilteredMenuItems: FunctionComponent<MainMenuProps> = ({
                             <Button href={menuItem.url ?? ""}
                                     color={menuItem.isOutlinedButton || menuItem.isContainedButton ? 'secondary' : "primary"}
                                     style={{
-                                        borderRadius: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? TransformHWTheme.shape.borderRadius : 0,
-                                        paddingLeft: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? TransformHWTheme.spacing(4) : TransformHWTheme.spacing(2),
-                                        paddingRight: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? TransformHWTheme.spacing(4) : TransformHWTheme.spacing(2),
-                                        marginTop: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? TransformHWTheme.spacing(3) : 0,
-                                        marginBottom: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? TransformHWTheme.spacing(2) : 0,
+                                        borderRadius: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? BartenderTheme.shape.borderRadius : 0,
+                                        paddingLeft: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? BartenderTheme.spacing(4) : BartenderTheme.spacing(2),
+                                        paddingRight: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? BartenderTheme.spacing(4) : BartenderTheme.spacing(2),
+                                        marginTop: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? BartenderTheme.spacing(3) : 0,
+                                        marginBottom: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? BartenderTheme.spacing(2) : 0,
                                         height: menuItem.isOutlinedButton || menuItem.isContainedButton ? "48px" : "100%",
-                                        color: menuItem.isOutlinedButton || menuItem.isContainedButton ? 'white' : TransformHWTheme.palette.secondary.main
+                                        color: menuItem.isOutlinedButton || menuItem.isContainedButton ? 'white' : BartenderTheme.palette.secondary.main
                                     }}
                                     variant={menuItem.isContainedButton ? 'contained' : (menuItem.isOutlinedButton ? 'outlined' : 'text')}>
                                 <Typography noWrap
@@ -75,10 +75,10 @@ const FilteredMenuItems: FunctionComponent<MainMenuProps> = ({
                                 color={"secondary"}
                                 style={{
                                     borderRadius: 0,
-                                    paddingLeft: TransformHWTheme.spacing(2),
-                                    paddingRight: TransformHWTheme.spacing(3),
+                                    paddingLeft: BartenderTheme.spacing(2),
+                                    paddingRight: BartenderTheme.spacing(3),
                                     height: "100%",
-                                    color: TransformHWTheme.palette.secondary.main
+                                    color: BartenderTheme.palette.secondary.main
                                 }}
                                 onClick={handleClick}
                                 endIcon={<ArrowDropDown ></ArrowDropDown>}

@@ -18,7 +18,7 @@ import {ListItemRender, ListRender, UtmLinkRender} from './BlockContentAnnotatio
 import {urlFor} from '../../static-pages/cmsStaticPagesClient'
 import {TypographyVariantType} from '../../../../common/sanityIo/BlockContentMarkRenderers'
 import {SanityImageSource} from "@sanity/asset-utils";
-import TransformHWTheme from "../../../../theme/transform-hw/TransformHWTheme";
+import BartenderTheme from "../../../../theme/transform-hw/BartenderTheme";
 
 export type HeaderVariantType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 export type LinkType = { href: string, isAddUtm: boolean, color: { title: string, value: string } }
@@ -27,7 +27,7 @@ export type BlockPropsType = { _type: string, listItem?: string, level?: number 
 export type BlockContentPropsType<T> = { mark?: T }
 
 export const HeaderRender = (props: any, variant: HeaderVariantType) => {
-  const classes = useCommonStyles(TransformHWTheme)
+  const classes = useCommonStyles(BartenderTheme)
 
   const wrapWithHTag = (children: any) => {
     switch (variant) {
@@ -69,7 +69,7 @@ export const ImageAssetRender = (image?: SanityImageSource, caption?: string, cl
 }
 
 export const HrRender: React.FunctionComponent = (props) => {
-  const classes = useCommonStyles(TransformHWTheme)
+  const classes = useCommonStyles(BartenderTheme)
 
   return <Grid container item>
     <hr className={classes.hr}/>
@@ -77,9 +77,9 @@ export const HrRender: React.FunctionComponent = (props) => {
 }
 
 export const BlockContainerRender: React.FunctionComponent = (props: React.PropsWithChildren<{}>) => {
-  const classes = useCommonStyles(TransformHWTheme)
+  const classes = useCommonStyles(BartenderTheme)
   return <Typography className={classes.preFormattedText} component="span"
-                     style={{...TransformHWTheme.typography.body1}}>{props.children}</Typography>
+                     style={{...BartenderTheme.typography.body1}}>{props.children}</Typography>
 }
 
 export const abBlockSerializers: any = {
@@ -119,18 +119,18 @@ export const abBlockSerializers: any = {
   marks: {
     light: LightRender,
     dropCap: DropCapRender,
-    primaryTextColor: (props: any) => (TextColorRender(props, TransformHWTheme.palette.primary.main)),
-    secondaryTextColor: (props: any) => (TextColorRender(props, TransformHWTheme.palette.secondary.main)),
+    primaryTextColor: (props: any) => (TextColorRender(props, BartenderTheme.palette.primary.main)),
+    secondaryTextColor: (props: any) => (TextColorRender(props, BartenderTheme.palette.secondary.main)),
     accentTextBlue: (props: any) => (TextColorRender(props, '#565190')),
     accentTextGreen: (props: any) => (TextColorRender(props, '#5C7F61')),
-    underlinePrimaryColor: (props: any) => (UnderlineRender(props, TransformHWTheme.palette.primary.main)),
+    underlinePrimaryColor: (props: any) => (UnderlineRender(props, BartenderTheme.palette.primary.main)),
     utmLink: UtmLinkRender,
     bold: BoldRender,
     subtitle: (props: any) => TypographyRender(props, 'subtitle1'),
     overline: (props: any) => TypographyRender(props, 'overline'),
     largeBodyText: (props: any) => LargeBodyTextRender(props),
     centerAlign: CenterRender,
-    backgroundHighlightPeach: (props: any) => HighlightRender(props, TransformHWTheme.palette.background.default),
+    backgroundHighlightPeach: (props: any) => HighlightRender(props, BartenderTheme.palette.background.default),
   },
   container: BlockContainerRender,
 }

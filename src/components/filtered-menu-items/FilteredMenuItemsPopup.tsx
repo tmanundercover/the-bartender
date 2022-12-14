@@ -1,6 +1,6 @@
 import React, {FunctionComponent, RefObject, useState} from 'react'
 import {Grid, Popover, PropTypes} from '@material-ui/core'
-import {COLORS} from "../../theme/transform-hw/TransformHWTheme";
+import {COLORS} from "../../theme/transform-hw/BartenderTheme";
 import SubMenu from "../transform-hw/header/SubMenu";
 
 import {v4 as uuidv4} from 'uuid'

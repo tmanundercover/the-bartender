@@ -16,7 +16,7 @@ import {
 // @ts-ignore
 import BlockContent from '@sanity/block-content-to-react'
 import { ButtonMarkRender, ListItemRender, ListRender, UtmLinkRender } from './BlockContentAnnotations'
-import TransformHWTheme, {poppinsXBold} from "../../theme/transform-hw/TransformHWTheme";
+import BartenderTheme, {poppinsXBold} from "../../theme/transform-hw/BartenderTheme";
 
 export type HeaderVariantType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 export type LinkType = { href: string, isAddUtm: boolean }
@@ -43,16 +43,16 @@ export const HeaderRender = (props: any, variant: HeaderVariantType) => {
       default:
         return <Typography display='inline' component='div'
                            style={{
-                             color: TransformHWTheme.palette.secondary.main,
+                             color: BartenderTheme.palette.secondary.main,
                              fontWeight: variant === 'h3' ? 300 : 700,
-                             marginBottom: TransformHWTheme.spacing(3)
+                             marginBottom: BartenderTheme.spacing(3)
                            }}
                            variant={variant as TypographyVariantType}>{children}</Typography>
     }
 
   }
 
-  return <MuiThemeProvider theme={TransformHWTheme}>
+  return <MuiThemeProvider theme={BartenderTheme}>
     <CssBaseline/>{wrapWithHTag(
     props.children
     )}
@@ -70,7 +70,7 @@ export const HeaderRender = (props: any, variant: HeaderVariantType) => {
 }
 
 export const CtaRender: React.FunctionComponent<PropsWithChildren> = (props) => {
-  const classes = useCommonStyles(TransformHWTheme)
+  const classes = useCommonStyles(BartenderTheme)
   return <Grid container item xs={12} className={classes.callToAction}>{props.children}</Grid>
 }
 
@@ -99,7 +99,7 @@ export const CodeBlockRender = (props: any) => {
 }
 
 export const HrRender: React.FunctionComponent = (props) => {
-  const classes = useCommonStyles(TransformHWTheme)
+  const classes = useCommonStyles(BartenderTheme)
 
   return <Grid container item>
     <hr className={classes.hr}/>
@@ -134,10 +134,10 @@ export const ButtonRender = (props: any) => {
     case 'outlined':
       switch (props.color) {
         case 'secondary':
-          textColor = TransformHWTheme.palette.secondary.main
+          textColor = BartenderTheme.palette.secondary.main
           break
         case 'primary':
-          textColor = TransformHWTheme.palette.primary.main
+          textColor = BartenderTheme.palette.primary.main
           break
         case 'mint':
           textColor = ""
@@ -155,31 +155,31 @@ export const ButtonRender = (props: any) => {
           textColor = 'whitesmoke'
           break
         case 'mint':
-          textColor = TransformHWTheme.palette.secondary.main
+          textColor = BartenderTheme.palette.secondary.main
           break
         default:
-          textColor = TransformHWTheme.palette.background.paper
+          textColor = BartenderTheme.palette.background.paper
       }
       break
     case 'text':
     default:
       switch (props.color) {
         case 'secondary':
-          textColor = TransformHWTheme.palette.secondary.main
+          textColor = BartenderTheme.palette.secondary.main
           break
         case 'primary':
-          textColor = TransformHWTheme.palette.primary.main
+          textColor = BartenderTheme.palette.primary.main
           break
         case 'mint':
           textColor = ""
           break
         default:
-          textColor = TransformHWTheme.palette.text.primary
+          textColor = BartenderTheme.palette.text.primary
       }
       break
   }
 
-  return <MuiThemeProvider theme={TransformHWTheme}>
+  return <MuiThemeProvider theme={BartenderTheme}>
     <CssBaseline/>
     <Grid container item>
       <Button style={props?.color === 'mint' ? props?.variant === 'contained' ? {
@@ -241,9 +241,9 @@ export const blockSerializers: any = {
   marks: {
     light: LightRender,
     dropCap: DropCapRender,
-    primaryTextColor: (props: any) => (TextColorRender(props, TransformHWTheme.palette.primary.main)),
-    secondaryTextColor: (props: any) => (TextColorRender(props, TransformHWTheme.palette.secondary.main)),
-    underlinePrimaryColor: (props: any) => (UnderlineRender(props, TransformHWTheme.palette.primary.main)),
+    primaryTextColor: (props: any) => (TextColorRender(props, BartenderTheme.palette.primary.main)),
+    secondaryTextColor: (props: any) => (TextColorRender(props, BartenderTheme.palette.secondary.main)),
+    underlinePrimaryColor: (props: any) => (UnderlineRender(props, BartenderTheme.palette.primary.main)),
     utmLink: UtmLinkRender,
     bold: BoldRender,
     button: ButtonMarkRender,

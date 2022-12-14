@@ -1,4 +1,4 @@
-import TransformHWTheme from "../../src/theme/transform-hw/TransformHWTheme";
+import BartenderTheme from "../../src/theme/transform-hw/BartenderTheme";
 
 export default {
   name: 'category',
@@ -22,7 +22,7 @@ export default {
       type: "colorlist", // required
       options: {
         list: [
-          { title: TransformHWTheme.palette.primary.main, value: TransformHWTheme.palette.primary.main },
+          { title: BartenderTheme.palette.primary.main, value: BartenderTheme.palette.primary.main },
           { title: "#3D3D3D", value: "#3D3D3D" },
           { title: "rgba(75,75,229,1)", value: "rgba(75,75,229,1)" },
           { title: "rgba(75,135,75,1)", value: "rgba(75,135,75,1)" },

@@ -1,18 +1,18 @@
 {
   "root": true,
   "api": {
-    "projectId": "4u89wsbx",
+    "projectId": "osisupsd",
     "dataset": "production"
   },
   "project": {
-    "name": "Transformative Healing and Wellness"
+    "name": "Bartending Concierge"
   },
   "__experimental_spaces": [
     {
       "name": "production",
       "title": "Production",
       "api": {
-        "projectId": "4u89wsbx",
+        "projectId": "osisupsd",
         "dataset": "production"
       }
     },
@@ -21,7 +21,7 @@
       "title": "Development",
       "default": true,
       "api": {
-        "projectId": "4u89wsbx",
+        "projectId": "osisupsd",
         "dataset": "development"
       }
     }

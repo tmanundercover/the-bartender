@@ -1,11 +1,11 @@
 import {useMediaQuery} from "@material-ui/core";
-import TransformHWTheme from "../theme/transform-hw/TransformHWTheme";
+import BartenderTheme from "../theme/transform-hw/BartenderTheme";
 
-const smDown = TransformHWTheme.breakpoints.down('sm')
-const xsDown = TransformHWTheme.breakpoints.down('xs')
-const mdUp = TransformHWTheme.breakpoints.up('md')
-const mdDown = TransformHWTheme.breakpoints.down('md')
-const xsOnly = TransformHWTheme.breakpoints.only('xs')
+const smDown = BartenderTheme.breakpoints.down('sm')
+const xsDown = BartenderTheme.breakpoints.down('xs')
+const mdUp = BartenderTheme.breakpoints.up('md')
+const mdDown = BartenderTheme.breakpoints.down('md')
+const xsOnly = BartenderTheme.breakpoints.only('xs')
 
 const useSmDown = ()=>{
     const smDownQuery = useMediaQuery(smDown)

@@ -5,7 +5,7 @@ import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ThwHeroContentSectionType} from "../BlockContentTypes";
 import clsx from "clsx";
 import {useThwStyles} from "./pages/Styles";
-import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
+import BartenderTheme from "../../theme/transform-hw/BartenderTheme";
 
 interface IProps {
     sectionData: ThwHeroContentSectionType
@@ -61,7 +61,7 @@ const ThwHeroContentSection: FunctionComponent<IProps> = (props) => {
                         <Grid container direction='column' style={{paddingLeft: "40px", paddingTop: "80px"}}>
                             <Grid item>
                                 <Typography variant='subtitle1'
-                                            style={{color: TransformHWTheme.palette.text.secondary}}>{props.sectionData.contentWelcomeMessage}</Typography>
+                                            style={{color: BartenderTheme.palette.text.secondary}}>{props.sectionData.contentWelcomeMessage}</Typography>
                             </Grid>
                             <Grid item style={{marginBottom: "30px"}}>
                                 <Typography variant='h3'

@@ -8,8 +8,9 @@ import * as cmsClient from "./cmsClient";
 import * as Promise from "es6-promise";
 import * as path from "path";
 import * as fs from "fs";
-import {SanityColdLead, SanityTransformHwHomePage} from "../../src/common/sanityIo/Types";
+import {SanityColdLead, SanityDrinkGetReqParamsType, SanityTransformHwHomePage} from "../../src/common/sanityIo/Types";
 import {urlFor} from "../../src/components/block-content-ui/static-pages/cmsStaticPagesClient";
+import {RoutesEnum} from "../../src/RoutesEnum";
 // To Throttle requests to sanity
 
 Promise.polyfill();
@@ -97,37 +98,45 @@ const serveIndexFile = (req: any, res: any) => {
     let pageSlug = tokenizedParams[tokenizedParams.length - 1];
 
     if (!pageSlug) {
-      pageSlug = "coming-soon";
+      pageSlug = "home";
     }
 
     logClient.log("server-side", "NOTICE",
         "Loading this page from sanity", pageSlug);
     try {
-      const pageFromSanity: SanityTransformHwHomePage = await cmsClient.fetchPage(pageSlug);
+      const pageFromSanity: SanityTransformHwHomePage = await cmsClient.fetchPage(pageSlug).catch((e)=>{
+        console.log("issueing reset");
+        return res.redirect(RoutesEnum.ERROR);
+        // return res.send({status: "404", message: "No page exists for slug " + pageSlug});
+      });
 
       // console.log("IMAGE URL", pageFromSanity.metaImage && urlFor(pageFromSanity.metaImage).url()?.replace("undefined", process.env.SANITY_DB ?? "development"));
-      const page = {
-        ogTitle: pageFromSanity.title,
-        description: pageFromSanity.description,
-        ogDescription: pageFromSanity.description,
-        ogImage: pageFromSanity.metaImage && urlFor(pageFromSanity.metaImage).url()?.replace("undefined", process.env.SANITY_DB ?? "development"),
-      };
+      if (pageFromSanity && pageFromSanity.title) {
+        const page = {
+          ogTitle: pageFromSanity.title,
+          description: pageFromSanity.description,
+          ogDescription: pageFromSanity.description,
+          ogImage: pageFromSanity.metaImage && urlFor(pageFromSanity.metaImage).url()?.replace("undefined", process.env.SANITY_DB ?? "development"),
+        };
 
-      logClient.log("server-side", "NOTICE",
-          "MetaTag Data", page);
+        logClient.log("server-side", "NOTICE",
+            "MetaTag Data", page);
 
-      htmlData = htmlData.replace(
-          "<title>React App</title>",
-          `<title>${page.ogTitle}</title>`)
-          .replace("__META_OG_TITLE__", page.ogTitle ?? "")
-          .replace("__META_OG_DESCRIPTION__", page.description ?? "")
-          .replace("__META_DESCRIPTION__", page.ogDescription ?? "")
-          .replace("__META_OG_IMAGE__", page.ogImage ?? "");
+        htmlData = htmlData.replace(
+            "<title>React App</title>",
+            `<title>${page.ogTitle}</title>`)
+            .replace("__META_OG_TITLE__", page.ogTitle ?? "")
+            .replace("__META_OG_DESCRIPTION__", page.description ?? "")
+            .replace("__META_DESCRIPTION__", page.ogDescription ?? "")
+            .replace("__META_OG_IMAGE__", page.ogImage ?? "");
 
-      return res.send(htmlData);
+        return res.send(htmlData);
+      }
+      // return res.send({status: "404", message: "No page exists for slug " + pageSlug});
     } catch (e: any) {
       logClient.log("server-side", "ERROR",
           "Error Fetching Page", {pageSlug, error: e.message});
+
       return res.send({status: "404", message: e.message});
     }
   });
@@ -147,6 +156,23 @@ app.post("/collect-email-address",
       } catch (e) {
         logClient.log("collect-email-address", "ERROR",
             "Could not create Lead", {email: reqBody.email});
+        functionRes.error({status: "400", e});
+      }
+    });
+
+app.get("/get-a-drink/:drinkSlug",
+    async (req: any, functionRes: any) => {
+      const reqParams: SanityDrinkGetReqParamsType = JSON.parse(req.params);
+
+      logClient.log("get-drink", "NOTICE",
+          "Request to retrieve a drink ", reqParams.drinkSlug);
+
+      try {
+        const response = await cmsClient.fetchDrinkBySlug(reqParams.drinkSlug);
+        functionRes.send({status: "200", response, drink: response});
+      } catch (e) {
+        logClient.log("get-a-drink", "ERROR",
+            "Could not retrieve drink", {drinkSlug: reqParams.drinkSlug});
         functionRes.error({status: "400", e});
       }
     });

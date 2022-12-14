@@ -2,7 +2,7 @@ import React, {FunctionComponent, useEffect, useState} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 
 import {Grid, Link, Typography} from '@material-ui/core'
-import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
+import BartenderTheme from "../../../theme/transform-hw/BartenderTheme";
 import {SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -41,7 +41,7 @@ export type LandingPagesFooterMenuGroupProps = {
 }
 
 const ThwFooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = ({menuGroup}) => {
-    const classes = useStyles(TransformHWTheme)
+    const classes = useStyles(BartenderTheme)
 
     const [menuGroupContents, setMenuGroupContents] = useState<SanityMenuGroup>()
     const [menuItemContents, setMenuItemContents] = useState<SanityMenuItem>()

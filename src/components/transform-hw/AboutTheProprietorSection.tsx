@@ -3,7 +3,7 @@ import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Grid, Typography} from '@material-ui/core'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ThwAboutProprietorSectionType} from "../BlockContentTypes";
-import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
+import BartenderTheme from "../../theme/transform-hw/BartenderTheme";
 import {CssFadeToColorDirectionEnum} from "../css-fade-to-color/CssFadeToColorDirectionEnum";
 import ImageWIthButtonOverlay from "../image-with-button-overlay/ImageWithButtonOverlay";
 import PsychologyTodaySeal from "./psychology-today-stamp/PsychologyToday";
@@ -28,7 +28,7 @@ interface IProps {
 }
 
 const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
-    const classes = useStyles(TransformHWTheme)
+    const classes = useStyles(BartenderTheme)
     return (
         <Grid container item className={classes.root} xs={11}>
             <Grid container item justifyContent='space-around'>

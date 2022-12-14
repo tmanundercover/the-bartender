@@ -2,7 +2,7 @@ import React, {FunctionComponent} from 'react'
 import {Collapse, createStyles, Divider, List, ListItem, ListItemText} from '@material-ui/core'
 import {makeStyles, Theme} from "@material-ui/core/styles";
 import {ExpandLess, ExpandMore} from "@material-ui/icons";
-import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
+import BartenderTheme from "../../../theme/transform-hw/BartenderTheme";
 import {SanityMenuGroup} from "../../../common/sanityIo/Types";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -39,8 +39,8 @@ const MainMenuSubMenu: FunctionComponent<MainMenuSubMenuProps> = ({menuGroup}) =
             className={classes.root}
         >
             <ListItem button style={{
-                paddingTop: TransformHWTheme.spacing(2.25),
-                paddingBottom: TransformHWTheme.spacing(2.25),
+                paddingTop: BartenderTheme.spacing(2.25),
+                paddingBottom: BartenderTheme.spacing(2.25),
             }} onClick={handleClick}>
                 <ListItemText primary={menuGroup.menuGroupTitle}/>
                 {open ? <ExpandLess /> : <ExpandMore />}
@@ -50,9 +50,9 @@ const MainMenuSubMenu: FunctionComponent<MainMenuSubMenuProps> = ({menuGroup}) =
                     {
                         menuGroup.links?.map((menuLink:any,index:number) => (
                             <ListItem key={index} button style={{
-                                paddingTop: TransformHWTheme.spacing(2.25),
-                                paddingLeft: TransformHWTheme.spacing(6),
-                                paddingBottom: TransformHWTheme.spacing(2.25),
+                                paddingTop: BartenderTheme.spacing(2.25),
+                                paddingLeft: BartenderTheme.spacing(6),
+                                paddingBottom: BartenderTheme.spacing(2.25),
                             }}>
                                 <ListItemText primary={menuLink.displayText}/>
                             </ListItem>

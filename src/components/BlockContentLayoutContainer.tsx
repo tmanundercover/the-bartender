@@ -1,9 +1,10 @@
-import React, {FunctionComponent, useState} from 'react'
+import React, {FunctionComponent} from 'react'
 import BlockContent from '@sanity/block-content-to-react'
 import {Card, Grid, Link} from '@material-ui/core'
 import sanityClient from '../sanityClient'
 import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
 import {
+    FlashCardSectionType,
     ThwAboutProprietorSectionType,
     ThwContactUsSectionType,
     ThwHeroContentSectionType,
@@ -12,7 +13,7 @@ import {
     ThwServicesSectionType,
     ThwWhyChooseUsSectionType,
 } from "./BlockContentTypes";
-import TransformHWTheme from "../theme/transform-hw/TransformHWTheme";
+import BartenderTheme from "../theme/transform-hw/BartenderTheme";
 import useThwCommonStyles from "../common/sanityIo/ThwCommonStyles";
 import ThwHeroContentSection from "./transform-hw/ThwHeroContentSection";
 import ThwPositivePsychology from "./transform-hw/ThwPositivePsychology";
@@ -23,14 +24,14 @@ import ThwWhyChooseUsSection from "./transform-hw/ThwWhyChooseUsSection";
 import ThwContactUsSection from "./transform-hw/ThwContactUsSection";
 import {SanityMenuContainer} from "../common/sanityIo/Types";
 import ThwHeader from "./transform-hw/header/ThwHeader";
-import {useScrollPosition} from "../utils/useScrollPosition";
 import ThwFooter from "./transform-hw/footer/ThwFooter";
 import {SanityHomePage} from "./block-content-ui/static-pages/cmsStaticPagesClient";
+import FlashCardsContentSection from "./bartender/FlashCardsContentSection";
 
 export type BlockContentLayoutContainerProps = { content?: any, isOpaque?:boolean, homePage?: SanityHomePage }
 
 const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainerProps> = (props) => {
-    const classes = useThwCommonStyles(TransformHWTheme)
+    const classes = useThwCommonStyles(BartenderTheme)
 
     return <Grid container item>
         {props?.content?.map((columnLayoutContainer: any, index: number) => {
@@ -76,6 +77,15 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                                 </Grid>
                             </Card></Grid>
                     </Grid>
+                //Bartender SECTIONS
+                case 'FlashCardSection':
+                    const flashCardSection: FlashCardSectionType = columnLayoutContainer
+
+                    return <Grid key={index} container item xs={12}>
+                        <FlashCardsContentSection
+                            sectionData={flashCardSection}
+                        />
+                    </Grid>
                 //HW SECTIONS
                 case 'transformHeroContentSection':
                     const thwHeroSection: ThwHeroContentSectionType = columnLayoutContainer
@@ -91,7 +101,7 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     const thwPositivePsychologySection: ThwPositivePsychologySectionType = columnLayoutContainer
 
                     return <Grid key={index} container item xs={12} justifyContent='center'
-                                 style={{backgroundColor: TransformHWTheme.palette.background.paper}}>
+                                 style={{backgroundColor: BartenderTheme.palette.background.paper}}>
                         <Link id={"ABOUT_US"} style={{position: "relative", top: -80}}><></>
                         </Link>
                         <ThwPositivePsychology
@@ -102,7 +112,7 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     const thwMottoSection: ThwMottoSectionType = columnLayoutContainer
 
                     return <Grid key={index} container item xs={12} justifyContent='center'
-                                 style={{backgroundColor: TransformHWTheme.palette.background.paper}}>
+                                 style={{backgroundColor: BartenderTheme.palette.background.paper}}>
                         <ThwMottoSection
                             sectionData={thwMottoSection}
                         />
@@ -111,7 +121,7 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     const thwProprietorSection: ThwAboutProprietorSectionType = columnLayoutContainer
 
                     return <Grid key={index} container item xs={12} justifyContent='center'
-                                 style={{backgroundColor: TransformHWTheme.palette.background.paper}}>
+                                 style={{backgroundColor: BartenderTheme.palette.background.paper}}>
                         <AboutTheProprietorSection
                             sectionData={thwProprietorSection}
                         />
@@ -120,7 +130,7 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     const thwServicesSection: ThwServicesSectionType = columnLayoutContainer
 
                     return <Grid key={index} container item xs={12} justifyContent='center'
-                                 style={{backgroundColor: TransformHWTheme.palette.background.paper}}>
+                                 style={{backgroundColor: BartenderTheme.palette.background.paper}}>
                         <Link id={"SERVICES"} style={{position: "relative", top: -80}}><></>
                         </Link>
                         <ThwServicesSection
@@ -131,7 +141,7 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     const thwWCUSection: ThwWhyChooseUsSectionType = columnLayoutContainer
 
                     return <Grid key={index} container item xs={12} justifyContent='center'
-                                 style={{backgroundColor: TransformHWTheme.palette.background.paper}}>
+                                 style={{backgroundColor: BartenderTheme.palette.background.paper}}>
                         <ThwWhyChooseUsSection
                             sectionData={thwWCUSection}
                         />
@@ -140,7 +150,7 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     const thwCUSection: ThwContactUsSectionType = columnLayoutContainer
 
                     return <Grid key={index} container item xs={12} justifyContent='center'
-                                 style={{backgroundColor: TransformHWTheme.palette.background.paper}}>
+                                 style={{backgroundColor: BartenderTheme.palette.background.paper}}>
                         <ThwContactUsSection
                             sectionData={thwCUSection}
                         />

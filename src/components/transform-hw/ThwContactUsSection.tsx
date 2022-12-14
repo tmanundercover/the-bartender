@@ -1,19 +1,17 @@
 import React, {FunctionComponent, useEffect, useState} from 'react'
 import {makeStyles, Theme} from "@material-ui/core/styles"
-import {Grid, InputAdornment, Link, TextField, Typography, useMediaQuery, withStyles} from "@material-ui/core";
+import {Grid, InputAdornment, Link, TextField, Typography, withStyles} from "@material-ui/core";
 import {AccountCircle, Email, Facebook, LinkedIn, Message, Phone, Twitter, YouTube} from "@material-ui/icons";
-import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
+import BartenderTheme from "../../theme/transform-hw/BartenderTheme";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {ThwContactUsSectionType} from "../BlockContentTypes";
 import clsx from "clsx";
 import {useThwStyles} from "./pages/Styles";
-import MediaQueries from "../../utils/mediaQueries";
+import mediaQueries from "../../utils/mediaQueries";
 import isEmail from "validator/lib/isEmail";
 import LoadingButton from "../loading-button/LoadingButton";
 import {useQuery} from "react-query";
 import leadClient from "./pages/under-construction-page/leadClient";
-import therapistHoldingHand from "./pages/under-construction-page/assets/therapistHoldingHand.jpg";
-import mediaQueries from "../../utils/mediaQueries";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -92,12 +90,12 @@ const StyledTextField = withStyles({
             backgroundColor: "#292929",
         },
         "& .MuiOutlinedInput-root": {
-            borderColor: `${TransformHWTheme.palette.primary.main} !important`,
+            borderColor: `${BartenderTheme.palette.primary.main} !important`,
             "&.Mui-focused": {
-                borderColor: `${TransformHWTheme.palette.primary.main} !important`,
+                borderColor: `${BartenderTheme.palette.primary.main} !important`,
                 "&:hover": {
                     "& .MuiOutlinedInput-notchedOutline": {
-                        borderColor: `${TransformHWTheme.palette.primary.main} !important`
+                        borderColor: `${BartenderTheme.palette.primary.main} !important`
                     }
                 }
             },
@@ -115,7 +113,7 @@ export type ContactUsProps = {
 }
 
 const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
-    const classes = useStyles(TransformHWTheme)
+    const classes = useStyles(BartenderTheme)
 
     const globalClasses = useThwStyles({})
     const smDown = mediaQueries.useSmDown()
@@ -161,11 +159,11 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
 
     const getHelperText = () => {
         if (data) {
-            return <Typography style={{color: TransformHWTheme.palette.success.main}} variant='subtitle1'>Thank you for
+            return <Typography style={{color: BartenderTheme.palette.success.main}} variant='subtitle1'>Thank you for
                 your submission!</Typography>
         }
         if (isError) {
-            return <Typography style={{color: TransformHWTheme.palette.error.main}} variant='subtitle1'>Please Try your
+            return <Typography style={{color: BartenderTheme.palette.error.main}} variant='subtitle1'>Please Try your
                 submission again later or contact jgreene@transformHW.org.</Typography>
         }
 
@@ -189,7 +187,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
             <Grid container item
                   className={clsx(globalClasses.fullSectionOverlay)}/>
             <Grid spacing={smDown ? 0 : 4} container item style={{
-                padding: TransformHWTheme.spacing(0, smDown?2:8, 6)
+                padding: BartenderTheme.spacing(0, smDown?2:8, 6)
             }} justifyContent={"center"}>
                 <Grid container item md={6}>
                     <Grid container direction="column" item className={classes.lhsContainer}
@@ -286,7 +284,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
                         {/*        </Typography>*/}
                         {/*    </Typography>*/}
                         {/*</Grid>*/}
-                        <Grid container item style={{marginTop: TransformHWTheme.spacing(8)}}>
+                        <Grid container item style={{marginTop: BartenderTheme.spacing(8)}}>
                             <StyledTextField
                                 fullWidth
                                 id="contact-name-input"
@@ -378,7 +376,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
                             />
                         </Grid>
                         <Grid container item alignItems="center" justifyContent="center"
-                              style={{marginTop: TransformHWTheme.spacing(4)}}>
+                              style={{marginTop: BartenderTheme.spacing(4)}}>
                             {/*<Button color="primary" variant="contained"><Typography variant="button">Send*/}
                             {/*    Button</Typography></Button>*/}
                             <LoadingButton

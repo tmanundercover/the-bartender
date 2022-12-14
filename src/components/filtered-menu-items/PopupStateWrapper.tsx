@@ -1,6 +1,6 @@
 import React, {FunctionComponent, RefObject, useState} from 'react'
 import {Button, Grid, Popover, PropTypes, Typography} from '@material-ui/core'
-import TransformHWTheme, {COLORS} from "../../theme/transform-hw/TransformHWTheme";
+import BartenderTheme, {COLORS} from "../../theme/transform-hw/BartenderTheme";
 import SubMenu from "../transform-hw/header/SubMenu";
 
 import PopupState, {bindPopover} from "material-ui-popup-state";
@@ -22,10 +22,10 @@ const PopupStateWrapper: FunctionComponent<FilteredMenuItemsPopupProps> = ({menu
                     color={"secondary"}
                     style={{
                         borderRadius: 0,
-                        paddingLeft: TransformHWTheme.spacing(2),
-                        paddingRight: TransformHWTheme.spacing(3),
+                        paddingLeft: BartenderTheme.spacing(2),
+                        paddingRight: BartenderTheme.spacing(3),
                         height: "100%",
-                        color: TransformHWTheme.palette.secondary.main
+                        color: BartenderTheme.palette.secondary.main
                     }}
                     endIcon={<ArrowDropDown></ArrowDropDown>}
                 >

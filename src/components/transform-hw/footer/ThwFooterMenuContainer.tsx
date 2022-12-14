@@ -4,7 +4,7 @@ import ThwFooterMenuGroup from './ThwFooterMenuGroup'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 import {SanityMenuContainer, SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
 import cmsClient from '../../block-content-ui/cmsClient'
-import TransformHWTheme, {COLORS} from "../../../theme/transform-hw/TransformHWTheme";
+import BartenderTheme, {COLORS} from "../../../theme/transform-hw/BartenderTheme";
 import MediaQueries from "../../../utils/mediaQueries";
 import Logo from "../logo/Logo";
 import {useQuery} from "react-query";
@@ -25,7 +25,7 @@ interface IProps {
 }
 
 const ThwFooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
-    const classes = useStyles(TransformHWTheme)
+    const classes = useStyles(BartenderTheme)
 
     const [menu, setMenu] = React.useState<SanityMenuContainer>()
     const smDown = mediaQueries.useSmDown()
@@ -49,9 +49,9 @@ const ThwFooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
     return (
         <Grid container item className={classes.root} spacing={5}>
             <Grid container item xs={12} md={4} style={smDown ? {
-                borderLeft: `4px solid ${TransformHWTheme.palette.primary.main}`,
+                borderLeft: `4px solid ${BartenderTheme.palette.primary.main}`,
                 backgroundColor: "rgba(117,117,117,.5)",
-                borderRight: `4px solid ${TransformHWTheme.palette.primary.main}`,
+                borderRight: `4px solid ${BartenderTheme.palette.primary.main}`,
             } : {}}>
                 {
                     menu?.subMenus?.map((menuGroup: any, index: number) => {

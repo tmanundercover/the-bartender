@@ -2,7 +2,7 @@ import React, {FunctionComponent, useState} from 'react'
 import {makeStyles, Theme} from "@material-ui/core/styles"
 import {Button, Divider, Drawer, Grid, List, ListItem, ListItemText} from '@material-ui/core'
 import {Close, Menu} from "@material-ui/icons";
-import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
+import BartenderTheme from "../../../theme/transform-hw/BartenderTheme";
 import Logo from "../logo/Logo";
 import MainMenuSubMenu from "./MainMenuSubMenu";
 import {MainMenuAnchorType, SanityMenuContainer, SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
@@ -43,8 +43,8 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
                         const menuItem: SanityMenuItem = subMenu
                         return <List style={{padding: 0}} key={menuItem.displayText}>
                             <ListItem button style={{
-                                paddingTop: TransformHWTheme.spacing(2.25),
-                                paddingBottom: TransformHWTheme.spacing(2.25),
+                                paddingTop: BartenderTheme.spacing(2.25),
+                                paddingBottom: BartenderTheme.spacing(2.25),
                             }}>
                                 <ListItemText primary={menuItem.displayText}/>
                             </ListItem>
@@ -66,8 +66,8 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
             >
                 <Grid container alignItems='center' justifyContent='space-between'
                       style={{
-                          paddingLeft: TransformHWTheme.spacing(4),
-                          paddingRight: TransformHWTheme.spacing(6),
+                          paddingLeft: BartenderTheme.spacing(4),
+                          paddingRight: BartenderTheme.spacing(6),
                       }}>
 
                     <Grid item xs={3}>

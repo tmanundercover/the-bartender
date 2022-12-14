@@ -1,6 +1,6 @@
 import React, {FunctionComponent, useState} from 'react'
 import {Button, Typography} from '@material-ui/core'
-import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
+import BartenderTheme from "../../theme/transform-hw/BartenderTheme";
 import {ArrowDropDown} from "@material-ui/icons";
 import {bindTrigger} from "material-ui-popup-state";
 import {SanityMenuGroup} from "../../common/sanityIo/Types";
@@ -17,10 +17,10 @@ const HeaderMenuGroupButton: FunctionComponent<HeaderMenuItemButtonProps> = ({po
         color={"secondary"}
         style={{
             borderRadius: 0,
-            paddingLeft: TransformHWTheme.spacing(2),
-            paddingRight: TransformHWTheme.spacing(3),
+            paddingLeft: BartenderTheme.spacing(2),
+            paddingRight: BartenderTheme.spacing(3),
             height: "100%",
-            color: TransformHWTheme.palette.secondary.main
+            color: BartenderTheme.palette.secondary.main
         }}
         onClick={popupState.handleClick}
         endIcon={<ArrowDropDown></ArrowDropDown>}

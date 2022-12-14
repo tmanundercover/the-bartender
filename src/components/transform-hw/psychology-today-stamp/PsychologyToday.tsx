@@ -1,7 +1,7 @@
 import React, {FunctionComponent, useRef} from 'react'
 import {Button, Grid, Link} from "@material-ui/core";
 import verifiedStamp from "./psychology-today-verified.png"
-import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
+import BartenderTheme from "../../../theme/transform-hw/BartenderTheme";
 
 
 const PsychologyTodaySeal: FunctionComponent = (props) => {

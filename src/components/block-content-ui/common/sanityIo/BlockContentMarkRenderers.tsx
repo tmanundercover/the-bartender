@@ -5,7 +5,7 @@
 import React, {PropsWithChildren} from 'react'
 import {useCommonStyles} from './CommonStyles'
 import {Grid, Typography} from '@material-ui/core'
-import TransformHWTheme from "../../../../theme/transform-hw/TransformHWTheme";
+import BartenderTheme from "../../../../theme/transform-hw/BartenderTheme";
 
 export type TypographyVariantType =
   'button'
@@ -22,17 +22,17 @@ export type TypographyVariantType =
   | 'body1'
   | 'body2'
 export const LightRender: React.FunctionComponent<PropsWithChildren> = (props) => {
-  const classes = useCommonStyles(TransformHWTheme)
+  const classes = useCommonStyles(BartenderTheme)
   return <span className={classes.lightWeightFont}>{props.children}</span>
 }
 
 export const BoldRender: React.FunctionComponent<PropsWithChildren> = (props) => {
-  const classes = useCommonStyles(TransformHWTheme)
+  const classes = useCommonStyles(BartenderTheme)
   return <span className={classes.boldWeightFont}>{props.children}</span>
 }
 
 export const DropCapRender: React.FunctionComponent<PropsWithChildren> = (props) => {
-  const classes = useCommonStyles(TransformHWTheme)
+  const classes = useCommonStyles(BartenderTheme)
   return <span className={classes.dropCapLetter}>{props.children}</span>
 }
 
@@ -49,18 +49,18 @@ export const UnderlineRender: React.FunctionComponent<PropsWithChildren> = (prop
 }
 
 export const NormalRender: React.FunctionComponent = (props: React.PropsWithChildren<{}> & { listItem?: string, level?: number }) => {
-  const classes = useCommonStyles(TransformHWTheme)
+  const classes = useCommonStyles(BartenderTheme)
   return <Typography className={classes.bodyText} style={{margin: '.5rem 0'}}>{props.children}</Typography>
 }
 
 export const TypographyRender: React.FunctionComponent<PropsWithChildren> = (props, variant: string) => {
-  const classes = useCommonStyles(TransformHWTheme)
+  const classes = useCommonStyles(BartenderTheme)
   return <Typography component="span" className={classes.typographyText}
                      variant={variant as TypographyVariantType}>{props.children}</Typography>
 }
 
 export const LargeBodyTextRender: React.FunctionComponent<PropsWithChildren> = (props) => {
-  const classes = useCommonStyles(TransformHWTheme)
+  const classes = useCommonStyles(BartenderTheme)
   return <Typography component="span" className={classes.largeBodyText}>{props.children}</Typography>
 }
 

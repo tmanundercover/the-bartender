@@ -1,49 +1,31 @@
-import {
-    CircularProgress,
-    CssBaseline,
-    Grid,
-    Link,
-    makeStyles,
-    MuiThemeProvider,
-    Theme,
-    Typography
-} from '@material-ui/core'
-import React, {FunctionComponent, Suspense, useState} from 'react'
-import sanityClient from '../../../sanityClient'
+import {CssBaseline, Grid, Link, makeStyles, MuiThemeProvider, Theme, useTheme} from '@material-ui/core'
+import React, {FunctionComponent, useState} from 'react'
 import BlockContentLayoutContainer from '../../BlockContentLayoutContainer'
-import {useParams} from 'react-router-dom'
-import MetaTagsComponent from '../../meta-tags/MetaTagsComponent'
 import cmsClient from '../../block-content-ui/cmsClient'
-import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
+import BartenderTheme from "../../../theme/transform-hw/BartenderTheme";
 import UnderConstruction from "./under-construction-page/UnderConstruction";
 import {SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
-import groqQueries from "../../../utils/groqQueries";
-import {useQuery} from "react-query";
-import {useThwStyles} from "./Styles";
 import FourOhFour from "./error-page/FourOhFour";
-import ThwFooter from "../footer/ThwFooter";
-import ThwHeader from "../header/ThwHeader";
 import {useScrollPosition} from "../../../utils/useScrollPosition";
-import {redirect} from "react-router";
-import {RoutesEnum} from "../../../App";
-import Logo from "../logo/Logo";
 import LoadingPage from "./loading-page/LoadingPage";
-import PsychologyTodaySeal from "../psychology-today-stamp/PsychologyToday";
-import transformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
 import thwClient from "../thwClient";
+import {redirect} from "react-router";
+import {RoutesEnum} from "../../../RoutesEnum";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
         width: '100vw',
-        // backgroundColor: "whitesmoke"
+        height: "max-content",
+        overflowY: "scroll"
     }
 }))
 
-export type AppLayoutProps = {}
+export type PageLayoutProps = {}
 
-const TransformHWLayout: FunctionComponent<AppLayoutProps> = (props) => {
-    const classes = useStyles(TransformHWTheme)
+const PageLayout: FunctionComponent<PageLayoutProps> = (props) => {
+    const theme = useTheme()
+    const classes = useStyles(theme)
     const [homePage, setHomePage] = React.useState<SanityTransformHwHomePage | undefined>()
     const [realizedContent, setRealizedContent] = React.useState<any[]>([])
 
@@ -56,6 +38,10 @@ const TransformHWLayout: FunctionComponent<AppLayoutProps> = (props) => {
 
     React.useEffect(() => {
         // These Content sections are references and must be retrieved from Sanity
+        console.log("Homepage changed", homePage)
+        if(homePage && homePage.status === 404) {
+            redirect(RoutesEnum.ERROR)
+        }
         homePage?.pageContent?.content?.map && Promise.all(homePage?.pageContent?.content.map((contentBlock: any) => {
             return cmsClient.fetchRef(contentBlock).then((response) => {
                 return response
@@ -65,6 +51,12 @@ const TransformHWLayout: FunctionComponent<AppLayoutProps> = (props) => {
         })
     }, [homePage])
 
+    React.useEffect(() => {
+            if(isError){
+                redirect(RoutesEnum.ERROR)
+            }
+        }, [isError])
+
     const [hideOnScroll, setHideOnScroll] = useState(true)
 
     useScrollPosition(({prevPos, currPos}: any) => {
@@ -73,7 +65,8 @@ const TransformHWLayout: FunctionComponent<AppLayoutProps> = (props) => {
     }, [hideOnScroll])
 
     const PageLayout = () => {
-        return <Grid container direction='column' className={classes.root}>
+        const theme = useTheme()
+        return <Grid container direction='column' className={classes.root} justifyContent='space-between'>
             <Grid container item>
                 <BlockContentLayoutContainer
                     isOpaque={hideOnScroll}
@@ -87,23 +80,21 @@ const TransformHWLayout: FunctionComponent<AppLayoutProps> = (props) => {
                       backgroundColor: "white",
                       position: "static",
                       bottom: 0,
-                      padding: transformHWTheme.spacing(1)
+                      padding: theme.spacing(1)
                   }}
                   justifyContent='space-between'>
-                <Grid item xs={8} container alignContent='center' style={{paddingTop: transformHWTheme.spacing(.75)}}>
+                <Grid item container alignContent='center' style={{paddingTop: theme.spacing(.75)}}>
                     <Link href='https://thehandsomestnerd.com' color='textPrimary' variant='subtitle2'>© 2022
                         TheHandsomestNerd, LLC.</Link>
                 </Grid>
-                <Grid item justifyContent='flex-end' xs={4} container alignContent='center'>
-                    <PsychologyTodaySeal/>
-                </Grid>
+
             </Grid>
         </Grid>
     }
 
 
     const PageContents = () => {
-        if (isLoading || (realizedContent.length < 7 && !homePage?.underConstructionPageRef) || isRefetching)
+        if (isLoading || (realizedContent.length < 1 && !homePage?.underConstructionPageRef) || isRefetching)
             return <LoadingPage/>
 
         if (!homePage?.isUnderConstruction) {
@@ -120,7 +111,7 @@ const TransformHWLayout: FunctionComponent<AppLayoutProps> = (props) => {
         return <FourOhFour/>
     }
 
-    return (<MuiThemeProvider theme={TransformHWTheme}>
+    return (<MuiThemeProvider theme={BartenderTheme}>
         <CssBaseline/>
         {/*<MetaTagsComponent structuredData={homePage?.structuredData && homePage.structuredData[0]}*/}
         {/*                   title={homePage?.title ?? ''}*/}
@@ -129,4 +120,4 @@ const TransformHWLayout: FunctionComponent<AppLayoutProps> = (props) => {
     </MuiThemeProvider>)
 }
 
-export default TransformHWLayout
+export default PageLayout

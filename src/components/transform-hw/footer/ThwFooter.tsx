@@ -3,7 +3,7 @@ import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Grid} from '@material-ui/core'
 import ThwFooterMenuContainer from './ThwFooterMenuContainer'
 import {SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
-import TransformHWTheme from "../../../theme/transform-hw/TransformHWTheme";
+import BartenderTheme from "../../../theme/transform-hw/BartenderTheme";
 import PsychologyTodaySeal from "../psychology-today-stamp/PsychologyToday";
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -44,7 +44,7 @@ interface IProps {
 }
 
 const ThwFooter: FunctionComponent<IProps> = (props:IProps) => {
-  const classes = useStyles(TransformHWTheme)
+  const classes = useStyles(BartenderTheme)
 
   return (
     props.homePage ? <Grid container className={classes.root}>

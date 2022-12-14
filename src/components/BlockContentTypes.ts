@@ -1,5 +1,5 @@
 import {SanityImageSource} from "@sanity/asset-utils";
-import {SanityRef} from "../common/sanityIo/Types";
+import {SanityRef, SanitySlug} from "../common/sanityIo/Types";
 
 export type HeroContentSectionType = {
     name: string
@@ -156,4 +156,11 @@ export type ThwContactUsSectionType = {
     youtube?: string,
     rhsTitle:string,
     formSubmitButtonText: string
+}
+
+// Bartender Types
+export type FlashCardSectionType = {
+    name: string
+    title: string
+    slug: SanitySlug
 }

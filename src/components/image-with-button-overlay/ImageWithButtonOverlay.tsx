@@ -25,6 +25,7 @@ interface IProps {
     ctaButtonText?: string
     variant?: 'text' | 'contained' | 'outlined'
     height: number
+    width?: number
     buttonAlignment?: ImageWithButtonOverlayAligmentEnum
     buttonColor?: PropTypes.Color
 }
@@ -55,7 +56,8 @@ const ImageWIthButtonOverlay: FunctionComponent<IProps> = (props) => {
                 backgroundImage: `url(${urlFor(props.imageSrc).height(props.height).url() ?? ''})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
-                height: props.height
+                height: props.height,
+                width: props.width,
             }}>
             </Grid>
             <Grid container item style={{
@@ -64,15 +66,16 @@ const ImageWIthButtonOverlay: FunctionComponent<IProps> = (props) => {
                 left: 0,
                 paddingRight: "32px"
             }} justifyContent={getButtonAlignment()}>
-                <Button variant={props.variant ? props.variant : 'outlined'} color={props.buttonColor?props.buttonColor:'primary'}
-                        href={props.ctaButtonLink ?? ''}
-                        style={{
-                            color: "#FAFAFA"
-                        }}
+                {props.ctaButtonText?.length && props.ctaButtonText?.length > 0 && <Button variant={props.variant ? props.variant : 'outlined'}
+                         color={props.buttonColor ? props.buttonColor : 'primary'}
+                         href={props.ctaButtonLink ?? ''}
+                         style={{
+                             color: "#FAFAFA"
+                         }}
                 >
                     <Typography variant='button'
                                 color='secondary'>{props.ctaButtonText}</Typography>
-                </Button>
+                </Button>}
             </Grid>
         </Grid>
     )

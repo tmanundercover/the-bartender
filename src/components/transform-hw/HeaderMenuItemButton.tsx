@@ -1,6 +1,6 @@
 import React, {FunctionComponent, useState} from 'react'
 import {Button, Typography} from '@material-ui/core'
-import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
+import BartenderTheme from "../../theme/transform-hw/BartenderTheme";
 import {SanityMenuItem} from "../../common/sanityIo/Types";
 
 
@@ -26,13 +26,13 @@ const HeaderMenuItemButton: FunctionComponent<HeaderMenuItemButtonProps> = ({men
     return (<Button href={menuItem.url ?? ""}
                     color={menuItem.isOutlinedButton || menuItem.isContainedButton ? 'secondary' : "primary"}
                     style={{
-                        borderRadius: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? TransformHWTheme.shape.borderRadius : 0,
-                        paddingLeft: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? TransformHWTheme.spacing(4) : TransformHWTheme.spacing(2),
-                        paddingRight: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? TransformHWTheme.spacing(4) : TransformHWTheme.spacing(2),
-                        marginTop: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? TransformHWTheme.spacing(3) : 0,
-                        marginBottom: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? TransformHWTheme.spacing(2) : 0,
+                        borderRadius: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? BartenderTheme.shape.borderRadius : 0,
+                        paddingLeft: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? BartenderTheme.spacing(4) : BartenderTheme.spacing(2),
+                        paddingRight: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? BartenderTheme.spacing(4) : BartenderTheme.spacing(2),
+                        marginTop: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? BartenderTheme.spacing(3) : 0,
+                        marginBottom: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? BartenderTheme.spacing(2) : 0,
                         height: menuItem.isOutlinedButton || menuItem.isContainedButton ? "48px" : "100%",
-                        color: menuItem.isOutlinedButton || menuItem.isContainedButton ? 'white' : TransformHWTheme.palette.secondary.main
+                        color: menuItem.isOutlinedButton || menuItem.isContainedButton ? 'white' : BartenderTheme.palette.secondary.main
                     }}
                     variant={menuItem.isContainedButton ? 'contained' : (menuItem.isOutlinedButton ? 'outlined' : 'text')}>
         <Typography noWrap

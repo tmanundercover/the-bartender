@@ -1,7 +1,7 @@
 import React, {FunctionComponent, useEffect} from 'react'
 import {makeStyles, Theme} from "@material-ui/core/styles"
 import {AppBar, Grid, Hidden, withWidth} from '@material-ui/core'
-import TransformHWTheme, {COLORS} from "../../../theme/transform-hw/TransformHWTheme";
+import BartenderTheme, {COLORS} from "../../../theme/transform-hw/BartenderTheme";
 import Logo from "../logo/Logo";
 import mediaQueries from "../../../utils/mediaQueries";
 import MainMenu from "./MainMenu";
@@ -54,10 +54,10 @@ const ThwHeader: FunctionComponent<HeaderProps> = (props) => {
                               alignItems='stretch'
                               style={{
                                   height: "100%",
-                                  paddingRight: mdDown ? TransformHWTheme.spacing(0) : TransformHWTheme.spacing(4)
+                                  paddingRight: mdDown ? BartenderTheme.spacing(0) : BartenderTheme.spacing(4)
                               }}>
                             <FilteredMenuItems
-                                bgColor={!props.isOpaque && !mdDown ? TransformHWTheme.palette.primary.main : COLORS.TRANSPARENTWHITE}
+                                bgColor={!props.isOpaque && !mdDown ? BartenderTheme.palette.primary.main : COLORS.TRANSPARENTWHITE}
                                  subMenus={data.subMenus ?? []} onlyButtons={mdDown}
                                 includeMenuItems={!mdDown} includeMenuGroups={!mdDown}/>
                         </Grid>

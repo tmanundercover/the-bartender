@@ -5,7 +5,7 @@ import {ButtonGroupMemberEnum} from "../../components/loading-button/ButtonGroup
 import UnderConstruction from "../../components/transform-hw/pages/under-construction-page/UnderConstruction";
 import {rest} from "msw";
 import {Grid} from "@material-ui/core";
-import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
+import BartenderTheme from "../../theme/transform-hw/BartenderTheme";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -55,7 +55,7 @@ export default {
 } as ComponentMeta<typeof UnderConstruction>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof UnderConstruction> = (args) => <Grid item style={{backgroundColor: TransformHWTheme.palette.background.default}}><UnderConstruction {...args} /></Grid>;
+const Template: ComponentStory<typeof UnderConstruction> = (args) => <Grid item style={{backgroundColor: BartenderTheme.palette.background.default}}><UnderConstruction {...args} /></Grid>;
 
 export const UnderConstructionPageUnderConstruction = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args

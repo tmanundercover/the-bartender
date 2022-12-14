@@ -44,6 +44,13 @@ import thwWhyChooseUsSection from "./sections/transform-hw/why-choose-us/ThwWhyC
 import transformWhyChooseUsItem from "./sections/transform-hw/why-choose-us/transformWhyChooseUsItem";
 import ThwContactUs from "./sections/transform-hw/ThwContactUsSection";
 import ThwUnderConstructionPage from "./sections/transform-hw/ThwUnderConstructionPage";
+import Cocktail from "./bartender/Cocktail";
+import Garnish from "./bartender/Garnish";
+import Glass from "./bartender/Glass";
+import Ingredient from "./bartender/Ingredient";
+import Instruction from "./bartender/Instruction";
+import MixingGlass from "./bartender/MixingGlass";
+import FlashCardSection from "./bartender/FlashCardSection";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -87,6 +94,13 @@ export default createSchema({
         ThwWhyChooseUsSection,
         transformWhyChooseUsItem,
         ThwContactUs,
-        ThwUnderConstructionPage
+        ThwUnderConstructionPage,
+        Cocktail,
+        Garnish,
+        Glass,
+        Ingredient,
+        Instruction,
+        MixingGlass,
+        FlashCardSection
     ]),
 })

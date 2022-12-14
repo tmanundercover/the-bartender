@@ -1,6 +1,6 @@
 import {log} from "./logClient";
 import {sanityClient} from "./sanityClient";
-import {SanityColdLead, SanityTransformHwHomePage} from "../../src/common/sanityIo/Types";
+import {SanityCocktailType, SanityColdLead, SanityTransformHwHomePage} from "../../src/common/sanityIo/Types";
 import groqQueries from "../../src/utils/groqQueries";
 
 const createColdLead = async (coldLead: SanityColdLead) => {
@@ -37,5 +37,21 @@ const fetchPage = async (pageSlug:string)=>{
       });
 };
 
+const fetchDrinkBySlug = async (drinkSlug:string)=>{
+  return sanityClient
+      .fetch(
+          `*[slug.current == $drinkSlug && type=="cocktail"]{
+          ${groqQueries.COCKTAIL}
+       }`, {drinkSlug})
+      .then((data: SanityCocktailType[]) => {
+        log("fetchPage", "NOTICE", "fetched page", {pageSlug: drinkSlug, page: data[0]});
+        return data[0];
+      })
+      .catch((e:Error)=>{
+        console.error({pageSlug: drinkSlug, message: e.message});
+        Promise.reject(e.message);
+      });
+};
 
-export {createColdLead, fetchPage};
+
+export {fetchDrinkBySlug, createColdLead, fetchPage};

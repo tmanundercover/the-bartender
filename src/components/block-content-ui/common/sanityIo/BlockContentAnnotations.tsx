@@ -6,7 +6,7 @@ import {Grid, Link, List, ListItem, ListItemIcon, ListItemText, Typography} from
 import {FiberManualRecord} from '@material-ui/icons'
 import {useCommonStyles} from './CommonStyles'
 import {TypographyVariantType} from './BlockContentMarkRenderers'
-import TransformHWTheme from "../../../../theme/transform-hw/TransformHWTheme";
+import BartenderTheme from "../../../../theme/transform-hw/BartenderTheme";
 
 export const UtmLinkRender: React.FunctionComponent = (props: React.PropsWithChildren<{}> & BlockContentPropsType<LinkType>) => {
   let href = props?.mark?.href
@@ -25,7 +25,7 @@ export const UtmLinkRender: React.FunctionComponent = (props: React.PropsWithChi
     }
   } catch (e) {
   }
-  return <Link href={href} style={{color: props?.mark?.color ? props.mark.color.value:TransformHWTheme.palette.primary.main}}>{props.children}</Link>
+  return <Link href={href} style={{color: props?.mark?.color ? props.mark.color.value:BartenderTheme.palette.primary.main}}>{props.children}</Link>
 }
 
 export const ListRender: React.FunctionComponent = (props: React.PropsWithChildren<{}>) => {

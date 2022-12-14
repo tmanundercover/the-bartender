@@ -3,7 +3,7 @@ import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Button, Grid, Typography} from '@material-ui/core'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ThwPositivePsychologySectionType} from "../BlockContentTypes";
-import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
+import BartenderTheme from "../../theme/transform-hw/BartenderTheme";
 import {Check} from "@material-ui/icons";
 import mediaQueries from "../../utils/mediaQueries";
 
@@ -26,7 +26,7 @@ interface IProps {
 }
 
 const PositivePsychologySection: FunctionComponent<IProps> = (props) => {
-    const classes = useStyles(TransformHWTheme)
+    const classes = useStyles(BartenderTheme)
     const mdUp = mediaQueries.useMdUp()
 
     return (
@@ -72,7 +72,7 @@ const PositivePsychologySection: FunctionComponent<IProps> = (props) => {
                     </Grid>
                     <Grid container item>
                         <Button variant='contained' color='secondary'
-                                style={{backgroundColor: TransformHWTheme.palette.secondary.main}}
+                                style={{backgroundColor: BartenderTheme.palette.secondary.main}}
                                 href={props.sectionData.ctaButtonLink ?? ''}>
                             {props.sectionData.ctaButtonText}
                         </Button>

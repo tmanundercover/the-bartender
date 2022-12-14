@@ -2,10 +2,10 @@ import {useQuery} from "react-query";
 import sanityClient from "../../sanityClient";
 import groqQueries from "../../utils/groqQueries";
 import {redirect} from "react-router";
-import {RoutesEnum} from "../../App";
 import {useParams} from "react-router-dom";
 import GroqQueries from "../../utils/groqQueries";
-import {SanityMenuContainer} from "../../common/sanityIo/Types";
+import {SanityCocktailType, SanityMenuContainer} from "../../common/sanityIo/Types";
+import {RoutesEnum} from "../../RoutesEnum";
 
 const useFetchPageBySlugQuery = () => {
     const urlParams: { pageSlug?: string } = useParams()
@@ -52,6 +52,23 @@ const useFetchMenuBySlugQuery = (menuSlug: string) => {
     );
 }
 
+const useFetchAllCocktails = () => {
+    console.log("fetching cocktails", )
+    return useQuery(
+        ["all-cocktails"],
+        () => {
+            return sanityClient
+                .fetch(
+                    `*[_type == "Cocktail"]{
+          ${GroqQueries.COCKTAIL}
+       }`,)
+                .then((data: SanityCocktailType[]) => {
+                    return data
+                })
+        }
+    );
+}
+
 //
 // const fetchLandingPageFooterMenu = (footerSlug?: string): Promise<SanityMenuContainer> => {
 //     const slug = footerSlug ?? 'footer-menu'
@@ -67,4 +84,4 @@ const useFetchMenuBySlugQuery = (menuSlug: string) => {
 //         })
 // }
 
-export default {useFetchPageBySlugQuery, useFetchMenuBySlugQuery}
+export default {useFetchPageBySlugQuery, useFetchMenuBySlugQuery, useFetchAllFlashCards: useFetchAllCocktails}

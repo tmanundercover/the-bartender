@@ -36,6 +36,48 @@ const HOMEPAGE = `
              }
           }
 `
+//
+// const INGREDIENT = `
+//           title,
+//           slug,
+//           product,
+//           isLiquor,
+//           isJuice,
+//           isCordial,
+// `
+const INSTRUCTiON = `
+          title,
+          slug,
+          tool,
+          action,
+          instruction,
+          "mixingGlassGarnishes":mixingGlass[]->,
+          "mixingGlass":mixingGlass[]{
+                _type,
+                amount,
+                ingredient->  
+          },
+`
+const COCKTAIL = `
+          title,
+          slug,
+          description,
+          imageSrc,
+          glass->,
+          "glassPrep": glassPrep[],
+          "garnish": garnish[]->,
+          "mixingGlassGarnishes": mixingGlass[]->,
+          "mixingGlass": mixingGlass[]{
+                _type,
+                amount,
+                ingredient->  
+          },
+          "instructions": instructions[]->{
+            ${INSTRUCTiON}
+          },
+          drinkCount,
+          isOnMenu
+`
 // const MENUGROUP = `
 //           title,
 //           slug,
@@ -74,7 +116,7 @@ const MENUGROUPCONTAINER = `
 `
 
 
-const defaultObj = {HOMEPAGE, MENUGROUPCONTAINER, MENUGROUP}
+const defaultObj = {COCKTAIL, HOMEPAGE, MENUGROUPCONTAINER, MENUGROUP}
 
 
 export default defaultObj

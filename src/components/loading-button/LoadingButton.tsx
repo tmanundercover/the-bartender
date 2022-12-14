@@ -1,6 +1,6 @@
 import {Button, CircularProgress, makeStyles, PropTypes} from '@material-ui/core'
 import React, {FunctionComponent, PropsWithChildren} from 'react'
-import TransformHWTheme from "../../theme/transform-hw/TransformHWTheme";
+import BartenderTheme from "../../theme/transform-hw/BartenderTheme";
 import {ButtonGroupMemberEnum} from "./ButtonGroupMemberEnum";
 
 
@@ -21,7 +21,7 @@ export const useStyles = makeStyles((theme) => ({
                     return 0
                 case ButtonGroupMemberEnum.LEFT:
                 default:
-                    return TransformHWTheme.shape.borderRadius
+                    return BartenderTheme.shape.borderRadius
             }
         },
         borderTopRightRadius: (props: CssProps) => {
@@ -32,7 +32,7 @@ export const useStyles = makeStyles((theme) => ({
                     return 0
                 case ButtonGroupMemberEnum.RIGHT:
                 default:
-                    return TransformHWTheme.shape.borderRadius
+                    return BartenderTheme.shape.borderRadius
             }
         },
         borderBottomRightRadius: (props: CssProps) => {
@@ -43,7 +43,7 @@ export const useStyles = makeStyles((theme) => ({
                     return 0
                 case ButtonGroupMemberEnum.RIGHT:
                 default:
-                    return TransformHWTheme.shape.borderRadius
+                    return BartenderTheme.shape.borderRadius
 
             }
         },
@@ -55,7 +55,7 @@ export const useStyles = makeStyles((theme) => ({
                     return 0
                 case ButtonGroupMemberEnum.LEFT:
                 default:
-                    return TransformHWTheme.shape.borderRadius
+                    return BartenderTheme.shape.borderRadius
             }
         },
     }
@@ -77,9 +77,9 @@ const LoadingButton: FunctionComponent<PropsWithChildren<LoadingButtonProps>> = 
     const getProgressContrastColor = ()=>{
         switch (props.color) {
             case 'primary':
-                return  TransformHWTheme.palette.primary.main
+                return  BartenderTheme.palette.primary.main
             case 'secondary':
-                return TransformHWTheme.palette.secondary.main
+                return BartenderTheme.palette.secondary.main
             default:
                 return '#FFFFFF'
         }
@@ -95,7 +95,7 @@ const LoadingButton: FunctionComponent<PropsWithChildren<LoadingButtonProps>> = 
             {
                 props.isLoading ?
                     <CircularProgress style={{
-                        color: TransformHWTheme.palette.getContrastText(getProgressContrastColor()),
+                        color: BartenderTheme.palette.getContrastText(getProgressContrastColor()),
                         width: "22px",
                         height: "22px"
                     }}/>

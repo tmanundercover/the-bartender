@@ -113,15 +113,15 @@ export const PINK = '#FFA9E7'
 // Marketplace colors
 
 export enum COLORS {
-    DARKBLUE = '#000035',
-    BLUE = 'rgba(16, 43, 136, 1)',
+    DARKBLUE = '#350002',
+    BLUE = 'rgb(136,16,30)',
     DARK_GRAY = '#A8A9AC',
     GRAY = 'rgba(207, 207, 207, 1)',
     LIGHT_GRAY = '#E3E3E3',
     TRANSPARENTWHITE = 'rgba(255,255,255,0.75)'
 }
 
-const TransformHWTheme = createTheme({
+const BartenderTheme = createTheme({
     breakpoints: {
         values: {
             xs: 0,
@@ -160,7 +160,7 @@ const TransformHWTheme = createTheme({
         },
         text: {
             primary: COLORS.DARKBLUE,
-            secondary: COLORS.LIGHT_GRAY,
+            // secondary: COLORS.LIGHT_GRAY,
             disabled: COLORS.LIGHT_GRAY
         }
     },
@@ -237,7 +237,7 @@ const TransformHWTheme = createTheme({
         },
         subtitle2: {
             // Micro
-            fontSize: '10px',
+            fontSize: '12px',
             fontStyle: 'normal',
             fontWeight: 600,
             lineHeight: 1.45,
@@ -252,7 +252,7 @@ const TransformHWTheme = createTheme({
         },
         MuiInputBase: {
             root: {
-                color: "#FAFAFA",
+                // color: "#FAFAFA",
                 "&:focus": {
                     borderBottom: 0
                 }
@@ -301,7 +301,7 @@ const TransformHWTheme = createTheme({
             },
             containedPrimary: {
                 border: '1px solid white',
-                backgroundColor: "rgba(207, 207, 207, .8)",
+                // backgroundColor: "rgba(207, 207, 207, .8)",
                 // color: '#FCE3CC',
                 // backgroundColor: '#FF4122',
                 // '&:hover': {
@@ -309,8 +309,8 @@ const TransformHWTheme = createTheme({
                 //   color: '#FCE3CC'
                 // },
                 '&$disabled': {
-                    backgroundColor: '#79582d',
-                    color: '#969284'
+                    // backgroundColor: '#79582d',
+                    // color: '#969284'
                 },
                 // '&:focus': {
                 //   color: '#FCE3CC',
@@ -320,14 +320,14 @@ const TransformHWTheme = createTheme({
             containedSecondary: {
                 border: '1px solid whitesmoke',
                 // color: '#FEF1E6',
-                backgroundColor: 'rgba(16, 43, 136, .7)',
+                // backgroundColor: 'rgba(16, 43, 136, .7)',
                 // '&:hover': {
                 //   backgroundColor: '#2412AE',
                 //   color: '#FCE3CC'
                 // },
                 '&$disabled': {
-                    color: 'rgba(207, 207, 207, .5)',
-                    backgroundColor: 'rgba(16, 43, 136, .5)'
+                    // color: 'rgba(207, 207, 207, .5)',
+                    // backgroundColor: 'rgba(16, 43, 136, .5)'
                 },
                 // '&:focus': {
                 //   color: '#FCE3CC',
@@ -372,4 +372,4 @@ const TransformHWTheme = createTheme({
     }
 })
 
-export default TransformHWTheme
+export default BartenderTheme
