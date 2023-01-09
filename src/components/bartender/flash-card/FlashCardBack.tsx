@@ -15,11 +15,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 interface IProps {
-    // cocktail: SanityCocktailType
+    currentCard?: SanityCocktailType
 }
 
-const FlashCardBack: FunctionComponent<IProps> = (props: IProps) => {
-    const flashCardContext = useContext(FlashCardContext)
+const FlashCardBack: FunctionComponent<IProps> = ({currentCard}: IProps) => {
 
     const getGlassPrep = (prepString: string) => {
         switch (prepString) {
@@ -52,22 +51,22 @@ const FlashCardBack: FunctionComponent<IProps> = (props: IProps) => {
     return (<Grid container item spacing={2} justifyContent='center'>
         <Grid item>
             <Typography variant='h6' align='center'>
-                {flashCardContext.currentCard?.title}
+                {currentCard?.title}
             </Typography>
         </Grid>
         <Grid item container justifyContent='center'>
             <Typography variant='subtitle1' align='center'>
-                {flashCardContext.currentCard?.glass.sizeOz}oz {flashCardContext.currentCard?.glass?.title}
+                {currentCard?.glass.sizeOz}oz {currentCard?.glass?.title}
             </Typography>
         </Grid>
         {
-            flashCardContext.currentCard?.glassPrep && flashCardContext.currentCard?.glassPrep.length > 0 &&
+            currentCard?.glassPrep && currentCard?.glassPrep.length > 0 &&
             <Grid item container justifyContent='center' spacing={1}>
-                {flashCardContext.currentCard?.glassPrep?.map((prep) => <Grid item><Chip color='secondary'
-                                                                           label={<Typography variant='subtitle2'
-                                                                                              align='center'>
-                                                                               {getGlassPrep(prep)}
-                                                                           </Typography>}></Chip></Grid>)}
+                {currentCard?.glassPrep?.map((prep,index) => <Grid item key={"prep"+index}><Chip color='secondary'
+                                                                        label={<Typography variant='subtitle2'
+                                                                                           align='center'>
+                                                                            {getGlassPrep(prep)}
+                                                                        </Typography>}></Chip></Grid>)}
             </Grid>
         }
         <Grid container item justifyContent='center'>
@@ -80,9 +79,9 @@ const FlashCardBack: FunctionComponent<IProps> = (props: IProps) => {
                 <Grid container item>
                     <Grid container item style={{paddingLeft: "48px"}}>
                         {
-                            flashCardContext.currentCard?.mixingGlass?.map((mixin: (SanityMixingGlass | SanityGarnish)) => {
+                            currentCard?.mixingGlass?.map((mixin: (SanityMixingGlass | SanityGarnish),index) => {
                                 if (mixin?._type === "MixingGlass") {
-                                    return <Grid container item spacing={1}>
+                                    return <Grid container item spacing={1} key={"mixin"+index}>
                                         <Grid item container xs={2}
                                               justifyContent='flex-end'>{mixin?.amount}oz</Grid>
                                         <Grid
@@ -95,9 +94,9 @@ const FlashCardBack: FunctionComponent<IProps> = (props: IProps) => {
                     </Grid>
                     <Grid container item>
                         {
-                            flashCardContext.currentCard?.mixingGlassGarnishes?.map((mixin: (SanityGarnish)) => {
+                            currentCard?.mixingGlassGarnishes?.map((mixin: (SanityGarnish),index) => {
                                 if (mixin) {
-                                    return <Grid container item spacing={1}>
+                                    return <Grid container item spacing={1} key={index}>
                                         <Grid item container xs={2}
                                               justifyContent='space-around' alignItems='center'
                                               alignContent='center'>1 <Close fontSize='small'/></Grid>
@@ -112,7 +111,7 @@ const FlashCardBack: FunctionComponent<IProps> = (props: IProps) => {
             </Grid>
         </Grid>
         {
-            flashCardContext.currentCard?.garnish && flashCardContext.currentCard?.garnish.length > 0 &&
+            currentCard?.garnish && currentCard?.garnish.length > 0 &&
             <Grid container item justifyContent='center'>
 
                 <Grid item justifyContent='flex-end' xs={8}>
@@ -123,8 +122,8 @@ const FlashCardBack: FunctionComponent<IProps> = (props: IProps) => {
                     </Grid>
                     <Grid container item xs={11} style={{paddingLeft: "48px"}}>
                         {
-                            flashCardContext.currentCard?.garnish?.map((garnishedBy: SanityGarnish) => {
-                                return <Grid container item>
+                            currentCard?.garnish?.map((garnishedBy: SanityGarnish,index) => {
+                                return <Grid container item key={index}>
                                     <Grid item container>
                                         {garnishedBy.title}
                                     </Grid>
@@ -144,16 +143,16 @@ const FlashCardBack: FunctionComponent<IProps> = (props: IProps) => {
                 </Grid>
                 <Grid container item xs={11}>
                     {
-                        flashCardContext.currentCard?.instructions?.map((mixin: SanityMixingInstruction) => {
+                        currentCard?.instructions?.map((mixin: SanityMixingInstruction) => {
                             return <Grid container item>
                                 <Grid item container>
                                     {`${mixin?.action} ${mixin?.instruction ? mixin?.instruction : ""}`}
                                 </Grid>
                                 <Grid item container style={{paddingLeft: "8px"}}>
                                     {
-                                        mixin?.mixingGlass?.map((mixin: (SanityMixingGlass | SanityGarnish)) => {
+                                        mixin?.mixingGlass?.map((mixin: (SanityMixingGlass | SanityGarnish),index) => {
                                             if (mixin?._type === "MixingGlass") {
-                                                return <Grid container item spacing={1}>
+                                                return <Grid container item spacing={1} key={"mixingglass"+index}>
                                                     <Grid item container xs={2}
                                                           justifyContent='flex-end'>{mixin?.amount}oz</Grid> <Grid
                                                     item>{mixin?.ingredient?.title}</Grid>
@@ -163,9 +162,9 @@ const FlashCardBack: FunctionComponent<IProps> = (props: IProps) => {
                                         })
                                     }
                                     {
-                                        mixin?.mixingGlassGarnishes?.map((mixin: (SanityGarnish)) => {
+                                        mixin?.mixingGlassGarnishes?.map((mixin: (SanityGarnish),index) => {
                                             if (mixin) {
-                                                return <Grid container item>
+                                                return <Grid container item key={"garnish"+index}>
                                                     <Grid item>{mixin.title}</Grid>
                                                 </Grid>
                                             }

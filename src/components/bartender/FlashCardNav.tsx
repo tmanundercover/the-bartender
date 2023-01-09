@@ -3,6 +3,7 @@ import {makeStyles, Theme} from "@material-ui/core/styles"
 import {Grid, IconButton} from '@material-ui/core'
 import {ArrowLeft, ArrowRight} from "@material-ui/icons";
 import FlashCardContext from "./flash-card/flash-card-context/FlashCardContext";
+import SearchContext from "../../common/search-context/SearchContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -14,11 +15,12 @@ interface IProps { }
 
 const FlashCardNav: FunctionComponent<PropsWithChildren> = (props2) => {
     const flashCardContext = useContext(FlashCardContext)
+    const searchContext = useContext(SearchContext)
 
     return <Grid container item style={{position: "relative"}}>
         <Grid container item xs={12} justifyContent='center' alignContent='center' style={{position: "relative"}}>
             <Grid item style={{position: "absolute", paddingTop: "16px"}}>
-                {`${(flashCardContext.cardCount ?? 0) + 1} / ${flashCardContext.cocktails?.length}`}
+                {`${(flashCardContext.cardCounter ?? 0)+1} / ${searchContext.searchResults?.length}`}
 
             </Grid>
             <Grid item container>

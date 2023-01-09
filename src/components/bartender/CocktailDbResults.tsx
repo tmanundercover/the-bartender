@@ -6,6 +6,7 @@ import FlashCardContext from "./flash-card/flash-card-context/FlashCardContext";
 import SnackbarContext from "../../common/modal-context/SnackbarContext";
 import {useLocation} from "react-router-dom";
 import firebaseAnalyticsClient from "../../common/firebase/FirebaseAnalyticsClient";
+import SearchContext from "../../common/search-context/SearchContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -17,6 +18,8 @@ interface IProps { }
 const CocktailDbResults: FunctionComponent<IProps> = (props:IProps) => {
     const snackBar = useContext(SnackbarContext)
     const location = useLocation()
+
+    const searchContext = useContext(SearchContext)
 
     const getIngredientsFromCocktailDbCocktail = (cocktailDbCocktail: CocktailDbResultType) => {
         const numIngredients = [...Array(10).keys()]
@@ -84,7 +87,7 @@ const CocktailDbResults: FunctionComponent<IProps> = (props:IProps) => {
     const flashCardContext = useContext(FlashCardContext)
     return (<Grid item container spacing={1}>
         {
-            flashCardContext.additionalResults?.map((cocktailDbResult: CocktailDbResultType) => {
+            searchContext.additionalResults?.map((cocktailDbResult: CocktailDbResultType) => {
                 return <Grid item><Chip onClick={() => openNotification(cocktailDbResult)}
                                         label={cocktailDbResult.strDrink}></Chip></Grid>
             })

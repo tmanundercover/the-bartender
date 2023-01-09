@@ -1,36 +1,32 @@
-import React, {FunctionComponent, useContext} from 'react'
+import React, {FunctionComponent} from 'react'
 import {makeStyles, Theme} from "@material-ui/core/styles"
 import {Grid} from '@material-ui/core'
 import {SanityCocktailType} from "../../../common/sanityIo/Types";
 import ImageWIthButtonOverlay from "../../image-with-button-overlay/ImageWithButtonOverlay";
-import FlashCardContext from "./flash-card-context/FlashCardContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {},
 }))
 
 interface IProps {
-    // cocktail: SanityCocktailType
+    currentCard?: SanityCocktailType
 }
 
-const FlashCardFront: FunctionComponent<IProps> = (props: IProps) => {
-
-    const flashCardContext = useContext(FlashCardContext)
-
+const FlashCardFront: FunctionComponent<IProps> = ({currentCard}: IProps) => {
 
     return (<Grid container item direction='column' justifyContent='center' alignItems='center' alignContent='center'
                   spacing={3}>
         <Grid item>
-            {flashCardContext.currentCard?.title}
+            {currentCard?.title}
         </Grid>
         <Grid item>
-            {flashCardContext.currentCard?.imageSrc && <ImageWIthButtonOverlay imageSrc={flashCardContext.currentCard.imageSrc} height={200} width={200}/>}
+            {currentCard?.imageSrc && <ImageWIthButtonOverlay imageSrc={currentCard.imageSrc} height={200} width={200}/>}
         </Grid>
         <Grid item>
-            {flashCardContext.currentCard?.title}
+            {currentCard?.title}
         </Grid>
         <Grid item>
-            Drink Count: {flashCardContext.currentCard?.drinkCount}
+            Drink Count: {currentCard?.drinkCount}
         </Grid>
 
     </Grid>)

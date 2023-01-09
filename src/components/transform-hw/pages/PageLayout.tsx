@@ -8,9 +8,9 @@ import {SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
 import FourOhFour from "./error-page/FourOhFour";
 import {useScrollPosition} from "../../../utils/useScrollPosition";
 import LoadingPage from "./loading-page/LoadingPage";
-import thwClient from "../thwClient";
 import {redirect} from "react-router";
 import {RoutesEnum} from "../../../RoutesEnum";
+import apiClient from "../apiClient";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -29,7 +29,7 @@ const PageLayout: FunctionComponent<PageLayoutProps> = (props) => {
     const [homePage, setHomePage] = React.useState<SanityTransformHwHomePage | undefined>()
     const [realizedContent, setRealizedContent] = React.useState<any[]>([])
 
-    const {isLoading, isError, data, isRefetching} = thwClient.useFetchPageBySlugQuery()
+    const {isLoading, isError, data, isRefetching} = apiClient.useFetchPageBySlugQuery()
 
     React.useEffect(() => {
         if (data)

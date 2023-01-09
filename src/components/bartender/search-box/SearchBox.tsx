@@ -1,7 +1,7 @@
 import React, {FunctionComponent, useContext} from 'react';
 import {Button, Grid, TextField} from '@material-ui/core';
 import {Close} from '@material-ui/icons';
-import FlashCardContext from "../flash-card/flash-card-context/FlashCardContext";
+import SearchContext from "../../../common/search-context/SearchContext";
 
 // export const useStyles = makeStyles((theme: Theme) => ({}));
 
@@ -12,19 +12,19 @@ interface IProps {
 const SearchBox: FunctionComponent<IProps> = (props) => {
     // const classes = useStyles();
     const [searchTerms, setSearchTerms] = React.useState<string>('');
-    const flashcardContext = useContext(FlashCardContext)
+    const searchContext = useContext(SearchContext)
 
     const onSearchTermsChange = (newTerms: string) => {
         setSearchTerms(newTerms);
         if(newTerms === "") {
-            flashcardContext?.submitSearch && flashcardContext?.submitSearch(undefined)
+            searchContext?.submitSearch && searchContext?.submitSearch(undefined)
         } else {
-            flashcardContext?.submitSearch && flashcardContext?.submitSearch(searchTerms)
+            searchContext?.submitSearch && searchContext?.submitSearch(searchTerms)
         }
     };
     const clearSearch = () => {
         setSearchTerms('');
-        flashcardContext?.submitSearch && flashcardContext?.submitSearch(undefined);
+        searchContext?.submitSearch && searchContext?.submitSearch(undefined);
     };
     return (
         <Grid container alignItems="center" spacing={1}>

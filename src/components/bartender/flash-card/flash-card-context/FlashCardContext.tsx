@@ -4,13 +4,10 @@ import {CocktailDbResultType, SanityCocktailType} from "../../../../common/sanit
 export type FlashCardContextType = {
     nextCard?: ()=>void,
     prevCard?: ()=> void,
-    cardCount?: number,
-    currentCard?: SanityCocktailType,
-    cocktails?: SanityCocktailType[],
-    additionalResults?: CocktailDbResultType[],
+    getCurrentCard?: ()=> SanityCocktailType|undefined,
+    cardCounter?: number,
     isFlipped?:boolean,
     handleFlip?: (e: React.SyntheticEvent)=>void,
-    submitSearch?: (terms?:string)=>Promise<void>
 };
 
 const FlashCardContext = React.createContext<FlashCardContextType>({});

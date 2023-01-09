@@ -36,6 +36,12 @@ export default {
       type: 'boolean',
     },
     {
+      name: 'liquorType',
+      title: 'Liquor Type',
+      type: 'reference',
+      to: [{type: 'LiquorType'}]
+    },
+    {
       name: 'isJuice',
       title: 'Is this Juice?',
       type: 'boolean',
@@ -45,11 +51,24 @@ export default {
       title: 'Is this a Cordial?',
       type: 'boolean',
     },
-
-  ],
-  preview: {
-    select: {
-      title: 'name',
+    {
+      name: 'flavor',
+      title: 'Flavor',
+      type: 'array',
+      of: [{type: "string"}],
+      description: "Flavors",
+      options: {
+        list: [
+          { title: "Orange", value: "orange" },
+          { title: "Coffee", value: "coffee" },
+          { title: "Coconut", value: "coconut" },
+          { title: "Appertif", value: "appertif" },
+          { title: "Apple", value: "apple" },
+          { title: "Citrus", value: "citrus" },
+          { title: "Lemon", value: "lemon" },
+          { title: "Peach", value: "peach" },
+        ]
+      }
     },
-  },
+  ]
 }

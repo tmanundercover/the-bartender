@@ -161,6 +161,16 @@ export type SanityCocktailIngredient = {
     isJuice: boolean
 }
 
+export type SanityLiquorType = {
+    _id?: string
+    name?: string,
+    title?: string,
+    slug?: SanitySlug,
+    description?: string
+    imageSrc?: SanityImageAsset,
+    proof?: number
+}
+
 // export type SanityCocktailIngredientContainer ={
 //   amount: string,
 //   ingredient: SanityCocktailIngredient,
@@ -187,6 +197,7 @@ export type SanityMixingInstruction = {
 }
 
 export type SanityCocktailType = {
+    _id:string
     title: string,
     slug: SanitySlug,
     description: string,

@@ -59,6 +59,7 @@ const INSTRUCTiON = `
           },
 `
 const COCKTAIL = `
+          _id,
           title,
           slug,
           description,
@@ -77,6 +78,20 @@ const COCKTAIL = `
           },
           drinkCount,
           isOnMenu
+`
+const INGREDIENT = `
+          ...,
+          liquorType->,
+`
+const LIQUOR_TYPE = `
+          ...,
+          imageSrc {
+            asset->{
+              _id,
+              url,
+              altText
+             }
+          },
 `
 // const MENUGROUP = `
 //           title,
@@ -116,7 +131,7 @@ const MENUGROUPCONTAINER = `
 `
 
 
-const defaultObj = {COCKTAIL, HOMEPAGE, MENUGROUPCONTAINER, MENUGROUP}
+const defaultObj = {COCKTAIL, HOMEPAGE, MENUGROUPCONTAINER, MENUGROUP, INGREDIENT, LIQUOR_TYPE}
 
 
 export default defaultObj

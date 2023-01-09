@@ -24,21 +24,25 @@ interface IProps {
 
 const FlashCard: FunctionComponent<IProps> = (props: IProps) => {
     const classes = useStyles()
-    const location = useLocation();
 
-    const [cocktail, setCocktail] = React.useState<SanityCocktailType>()
     const flashCardContext = useContext(FlashCardContext)
+    const [currentCard, setCurrentCard] = React.useState<SanityCocktailType>()
 
+    React.useEffect(() => {
+        const theCard = flashCardContext.getCurrentCard && flashCardContext.getCurrentCard()
+        if(theCard)
+            setCurrentCard(theCard)
+    }, [flashCardContext.cardCounter])
 
 
     return (<Grid container item>
         <ReactCardFlip containerClassName={classes.root} isFlipped={flashCardContext.isFlipped}
                        flipDirection="vertical">
             <Grid container item onClick={flashCardContext.handleFlip} style={{height: "100%"}} alignContent='center'>
-                <FlashCardFront/>
+                <FlashCardFront currentCard={currentCard}/>
             </Grid>
             <Grid container item onClick={flashCardContext.handleFlip} style={{height: "100%"}} alignContent='center'>
-                <FlashCardBack/>
+                <FlashCardBack currentCard={currentCard}/>
             </Grid>
         </ReactCardFlip>
     </Grid>)

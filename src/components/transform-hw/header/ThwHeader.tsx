@@ -8,7 +8,7 @@ import MainMenu from "./MainMenu";
 import FilteredMenuItems from "../../filtered-menu-items/FilteredMenuItems";
 import clsx from "clsx";
 import {SanityMenuContainer} from "../../../common/sanityIo/Types";
-import thwClient from "../thwClient";
+import apiClient from "../apiClient";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -31,7 +31,7 @@ export type HeaderProps = {
 const ThwHeader: FunctionComponent<HeaderProps> = (props) => {
     const classes = useStyles()
 
-    const { data } = thwClient.useFetchMenuBySlugQuery(props.menuSlug ?? "")
+    const { data } = apiClient.useFetchMenuBySlugQuery(props.menuSlug ?? "")
 
     useEffect(()=>{
         props.updateIsLoading && props.updateIsLoading(!data)

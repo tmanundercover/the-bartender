@@ -18,6 +18,9 @@ export default () =>
                 .title('Cocktail')
                 .child(createSuperPane('Cocktail', S)),
             S.listItem()
+                .title('Liquor Type')
+                .child(createSuperPane('LiquorType', S)),
+            S.listItem()
                 .title('Garnish')
                 .child(createSuperPane('Garnish', S)),
             S.listItem()
