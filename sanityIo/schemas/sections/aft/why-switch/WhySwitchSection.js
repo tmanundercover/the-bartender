@@ -1,5 +1,3 @@
-import MediaAssetSource from "part:sanity-plugin-media/asset-source";
-
 export default {
   name: 'whySwitchSection',
   title: 'Image + 6 Bullets',

@@ -154,6 +154,7 @@ export type SanityGlass = {
 }
 
 export type SanityCocktailIngredient = {
+    _id?: string
     title: string,
     product: string,
     isLiquor: boolean,

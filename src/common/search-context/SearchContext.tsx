@@ -1,5 +1,5 @@
 import React from 'react';
-import {CocktailDbResultType, SanityCocktailType} from "../sanityIo/Types";
+import {CocktailDbResultType, SanityCocktailIngredient, SanityCocktailType} from "../sanityIo/Types";
 
 /*
     Context to store changes in the search state.
@@ -16,11 +16,24 @@ export type SearchContextType = {
     searchResults?: SanityCocktailType[]
     additionalResults?: CocktailDbResultType[]
     tagFilters?: string[]
+    ingredientFilters?: string[]
+    isIngredientIncluded?: (ingredient: SanityCocktailIngredient)=>boolean,
+    isFilterIncluded?: (filter: string)=>boolean,
     addFilter?: (newFilter:string)=> void
     removeFilter?: (filterToRemove?:string)=>void
+    addIngredientFilter?: (newFilter:string)=> void
+    removeIngredientFilter?: (filterToRemove?:string)=>void
     searchFilters?:string[]
-    filteredCocktails?: SanityCocktailType[]
     isNonAlcoholic?: boolean
+    nextCard?: ()=>void,
+    prevCard?: ()=> void,
+    getCurrentCard?: ()=> SanityCocktailType|undefined,
+    currentCard?: SanityCocktailType,
+    cardCounter?: number,
+    isFlipped?:boolean,
+    handleFlip?: (e: React.SyntheticEvent)=>void,
+    isAndSearch?: boolean
+    handleIsAndSearchChange?: (event: React.ChangeEvent<HTMLInputElement>) =>void
 };
 
 const SearchContext = React.createContext<SearchContextType>({});

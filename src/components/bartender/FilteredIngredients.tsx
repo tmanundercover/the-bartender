@@ -1,6 +1,6 @@
-import React, {FunctionComponent, useContext} from 'react'
+import React, {FunctionComponent, SyntheticEvent, useContext} from 'react'
 import {makeStyles, Theme} from "@material-ui/core/styles"
-import {Chip, Grid, Typography} from '@material-ui/core'
+import {Button, Chip, Grid, Typography} from '@material-ui/core'
 import {SanityCocktailIngredient} from "../../common/sanityIo/Types";
 import apiClient from "../transform-hw/apiClient";
 import SearchContext from "../../common/search-context/SearchContext";
@@ -26,12 +26,22 @@ const FilteredIngredients: FunctionComponent<IProps> = (props: IProps) => {
 
     React.useEffect(() => {
         refetch()
-    }, [searchContext.searchFilters])
+    }, [searchContext.searchFilters, searchContext.ingredientFilters])
+
+    const processIngredient = (filter: SanityCocktailIngredient) => {
+        if (searchContext.isIngredientIncluded && !searchContext.isIngredientIncluded(filter))
+            searchContext.addIngredientFilter && searchContext.addIngredientFilter(filter._id ?? "")
+        else
+            searchContext.removeIngredientFilter && searchContext.removeIngredientFilter(filter._id ?? "")
+    }
 
     return (<Grid container item style={{height: "300px"}}>
         {
             filteredBarIngredients.map((liquorBarItem: SanityCocktailIngredient, index) => {
-                return <Chip color='primary' key={index} label={<Grid item ><Typography>{liquorBarItem.title}</Typography></Grid>}/>
+                return <Button key={index} onClick={() => processIngredient(liquorBarItem)}><Chip
+                    color={searchContext.isIngredientIncluded && searchContext.isIngredientIncluded(liquorBarItem) ? 'secondary' : 'primary'}
+                    label={<Grid
+                        item><Typography>{liquorBarItem.title}</Typography></Grid>}/></Button>
             })
         }
     </Grid>)

@@ -40,7 +40,7 @@ const fetchPage = async (pageSlug:string)=>{
 const fetchDrinkBySlug = async (drinkSlug:string)=>{
   return sanityClient
       .fetch(
-          `*[slug.current == $drinkSlug && type=="cocktail"]{
+          `*[slug.current == $drinkSlug && type=="cocktail" && isDisabled != true]{
           ${groqQueries.COCKTAIL}
        }`, {drinkSlug})
       .then((data: SanityCocktailType[]) => {

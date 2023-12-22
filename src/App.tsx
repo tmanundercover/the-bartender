@@ -8,7 +8,6 @@ import PageLayout from "./components/transform-hw/pages/PageLayout";
 import {RoutesEnum} from "./RoutesEnum";
 import 'prevent-pull-refresh';
 import SnackbarProvider from "./common/modal-context/SnackbarProvider";
-import FlashCardProvider from "./components/bartender/flash-card/flash-card-context/FlashCardProvider";
 import SearchProvider from "./common/search-context/SearchProvider";
 
 
@@ -21,11 +20,10 @@ function App() {
             <SnackbarProvider>
                 <BrowserRouter>
                     <SearchProvider>
-                        <FlashCardProvider>
                             <Grid md={6} container item direction="column" alignItems="center"
                                   style={{
                                       backgroundColor: theme.palette.background.default,
-                                      // overflow: "hidden",
+                                      // minWidth: "423px",
                                       // height: "100vh",
                                       // width: "100vw"
                                   }}>
@@ -37,7 +35,6 @@ function App() {
                                     </Routes>
                                 </Grid>
                             </Grid>
-                        </FlashCardProvider>
                     </SearchProvider>
                 </BrowserRouter>
             </SnackbarProvider>

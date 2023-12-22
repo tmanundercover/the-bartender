@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/transformative-hw.iml" filepath="$PROJECT_DIR$/transformative-hw.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bartender-concierge.iml" filepath="$PROJECT_DIR$/bartender-concierge.iml" />
     </modules>
   </component>
 </project>

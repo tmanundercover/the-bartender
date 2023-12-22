@@ -11,10 +11,10 @@ export default {
       type: 'string',
       name: 'sectionTitle'
     },
-    {
-      title: 'content',
-      type: 'blockContent',
-      name: 'content'
-    }
+    // {
+    //   title: 'content',
+    //   type: 'blockContent',
+    //   name: 'content'
+    // }
   ]
 }

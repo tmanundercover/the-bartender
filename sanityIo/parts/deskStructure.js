@@ -12,6 +12,9 @@ export default () =>
         .title('Base')
         .items([
             S.listItem()
+                .title('Bar Inventory')
+                .child(createSuperPane('BarInventory', S)),
+            S.listItem()
                 .title('Page')
                 .child(createSuperPane('homePage', S)),
             S.listItem()

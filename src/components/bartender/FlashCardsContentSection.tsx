@@ -32,12 +32,12 @@ export const useStyles = makeStyles((theme: Theme) => ({
 const FlashCardsContentSection: FunctionComponent<IProps & PropsWithChildren> = (props) => {
     return (
         <Grid container item alignItems='center' alignContent='center' direction='column'
-                                 style={{overflow: 'hidden'}}>
-            <Grid container justifyContent='center'>
-                <Grid item container xs={1} alignContent='center'>
+                                 style={{overflow: 'hidden',}}>
+            <Grid container justifyContent='center' style={{minWidth: "423px"}}>
+                <Grid item container xs={2} alignContent='center' justifyContent='flex-end'>
                     <FiltersMenu  anchor={'bottom'}/>
                 </Grid>
-                <Grid item container xs={11} sm={8} lg={6}>
+                <Grid item container xs={10}>
                     <SearchBox/>
                 </Grid>
             </Grid>

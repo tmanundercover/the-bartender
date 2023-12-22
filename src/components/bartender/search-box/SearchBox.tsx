@@ -41,7 +41,7 @@ const SearchBox: FunctionComponent<IProps> = (props) => {
                     onChange={(e): void => onSearchTermsChange(e.target.value)}
                 />
             </Grid>
-            <Grid item xs={1}>
+            <Grid item xs={2}>
                 <Button onClick={clearSearch}>
                     <Close/>
                 </Button>

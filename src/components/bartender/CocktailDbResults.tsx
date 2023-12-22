@@ -2,7 +2,6 @@ import React, {FunctionComponent, useContext} from 'react'
 import {makeStyles, Theme} from "@material-ui/core/styles"
 import {Chip, Grid, Typography} from '@material-ui/core'
 import {CocktailDbResultType} from "../../common/sanityIo/Types";
-import FlashCardContext from "./flash-card/flash-card-context/FlashCardContext";
 import SnackbarContext from "../../common/modal-context/SnackbarContext";
 import {useLocation} from "react-router-dom";
 import firebaseAnalyticsClient from "../../common/firebase/FirebaseAnalyticsClient";
@@ -69,8 +68,8 @@ const CocktailDbResults: FunctionComponent<IProps> = (props:IProps) => {
             </Grid>
             <Grid item container xs={12}>
                 {
-                    cocktailDbResult.strTags?.split(',')?.map((tag) => {
-                        return <Chip size='small' label={tag}></Chip>
+                    cocktailDbResult.strTags?.split(',')?.map((tag, index) => {
+                        return <Chip size='small' label={tag} key={index}></Chip>
                     })
                 }
             </Grid>
@@ -84,7 +83,6 @@ const CocktailDbResults: FunctionComponent<IProps> = (props:IProps) => {
             `${cocktailDbResult.strDrink} | Cocktail from cocktailDb`)
     }
 
-    const flashCardContext = useContext(FlashCardContext)
     return (<Grid item container spacing={1}>
         {
             searchContext.additionalResults?.map((cocktailDbResult: CocktailDbResultType) => {

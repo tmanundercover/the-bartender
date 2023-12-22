@@ -12,10 +12,10 @@ import {
     useTheme
 } from '@material-ui/core'
 import {Close, FilterList} from "@material-ui/icons";
-import {MainMenuAnchorType, SanityCocktailIngredient} from "../../common/sanityIo/Types";
+import {MainMenuAnchorType} from "../../common/sanityIo/Types";
 import apiClient from "../transform-hw/apiClient";
 import LiquorBarFilter from "./LiquorBarFilter";
-import searchContext from "../../common/search-context/SearchContext";
+import Switch from '@material-ui/core/Switch';
 import SearchContext from "../../common/search-context/SearchContext";
 
 
@@ -58,7 +58,7 @@ const FiltersMenu: FunctionComponent<MainMenuProps> = ({anchor}) => {
 
     const {data, isLoading} = apiClient.useFetchAllBarIngredients()
 
-
+    const searchContext = useContext(SearchContext)
 
     const list = (anchor: MainMenuAnchorType) => (
         <Grid xs={12} container item
@@ -67,11 +67,20 @@ const FiltersMenu: FunctionComponent<MainMenuProps> = ({anchor}) => {
             // onKeyDown={toggleDrawer(anchor, false)}
         >
             <Grid container item justifyContent='center'>
-                The Bar
+                Search the Bar
             </Grid>
+
 
             <Grid container item>
                 <List style={{width: "100%"}}>
+                    <ListItem>
+                        <Grid container item justifyContent='center'>
+                            <Switch checked={searchContext.isAndSearch}
+                                    color='secondary'
+                                    onChange={searchContext.handleIsAndSearchChange} size="small"/> <Typography variant='body1'>What can I make with only?</Typography>
+
+                        </Grid>
+                    </ListItem>
                     <ListItem>
                         {data && <LiquorBarFilter entireBar={data}/>}
                     </ListItem>

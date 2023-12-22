@@ -93,5 +93,10 @@ export default {
             title: 'Is this on the Menu?',
             type: 'boolean',
         },
+        {
+            name: 'isDisabled',
+            title: 'Is this disabled for user to view?',
+            type: 'boolean',
+        },
     ],
 }

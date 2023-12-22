@@ -31,6 +31,14 @@ export default {
       type: 'string',
     },
     {
+      name: 'imageSrc',
+      title: 'Image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    },
+    {
       name: 'isLiquor',
       title: 'Is this Liquor?',
       type: 'boolean',
@@ -67,6 +75,12 @@ export default {
           { title: "Citrus", value: "citrus" },
           { title: "Lemon", value: "lemon" },
           { title: "Peach", value: "peach" },
+          { title: "Strawberry", value: "strawberry" },
+          { title: "Melon", value: "melon" },
+          { title: "Cinnamon", value: "cinnamon" },
+          { title: "Chocolate", value: "chocolate" },
+          { title: "Creme", value: "creme" },
+          { title: "Honey", value: "honey" },
         ]
       }
     },

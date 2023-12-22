@@ -60,13 +60,13 @@ const useFetchMenuBySlugQuery = (menuSlug: string) => {
 }
 
 const useFetchAllCocktails = () => {
-    console.log("fetching cocktails", )
+    console.log("fetching cocktails",)
     return useQuery(
         ["all-cocktails"],
         () => {
             return sanityClient
                 .fetch(
-                    `*[_type == "Cocktail"]{
+                    `*[_type == "Cocktail" && isDisabled != true]{
           ${GroqQueries.COCKTAIL}
        }`,)
                 .then((data: SanityCocktailType[]) => {
@@ -76,8 +76,8 @@ const useFetchAllCocktails = () => {
     );
 }
 
+
 const useFetchAllBarIngredients = () => {
-    console.log("fetching bar ingredients", )
     return useQuery(
         ["all-bar-ingredients"],
         () => {
@@ -94,7 +94,6 @@ const useFetchAllBarIngredients = () => {
 }
 
 const useFetchAllLiquorTypes = () => {
-    console.log("fetching liquor types", )
     return useQuery(
         ["all-liquor-types"],
         () => {
@@ -113,18 +112,17 @@ const useFetchFilteredIngredients = () => {
     const searchContext = useContext(SearchContext)
 
     const liquorTypes = searchContext.searchFilters
-    console.log("fetching ingredients filtered by liquor type ", liquorTypes)
 
     return useQuery(
         ["filter-bar-ingredients-by-liq-type"],
         () => {
-            if(liquorTypes && liquorTypes.length > 0 )
+            if (liquorTypes !== undefined && liquorTypes.length > 0)
                 return sanityClient
                     .fetch(
                         `*[_type == "Ingredient" && references($liquorTypeId)]{
               ${GroqQueries.INGREDIENT}
-           }`,{
-                            liquorTypeId:liquorTypes
+           }`, {
+                            liquorTypeId: liquorTypes
                         })
                     .then((data: SanityCocktailIngredient[]) => {
                         return data
@@ -134,9 +132,7 @@ const useFetchFilteredIngredients = () => {
                 .fetch(
                     `*[_type == "Ingredient"]{
               ${GroqQueries.INGREDIENT}
-           }`,{
-                        liquorTypeId:liquorTypes
-                    })
+           }`)
                 .then((data: SanityCocktailIngredient[]) => {
                     return data
                 })
@@ -153,14 +149,13 @@ const useFetchFilteredCocktails = () => {
     return useQuery(
         ["filter-bar-ingredients-by-liq-type"],
         () => {
-    console.log("fetching cocktails filtered by liquor type ", liquorTypes)
-            if(liquorTypes !== undefined && liquorTypes.length > 0 )
+            if (liquorTypes !== undefined && liquorTypes.length > 0)
                 return sanityClient
                     .fetch(
-                        `*[_type == "Cocktail" && references($liquorTypeId)]{
+                        `*[_type == "Cocktail" && references($liquorTypeId) && isDisabled != true]{
               ${GroqQueries.COCKTAIL}
-           }`,{
-                            liquorTypeId:liquorTypes
+           }`, {
+                            liquorTypeId: liquorTypes
                         })
                     .then((data: SanityCocktailType[]) => {
                         return data
@@ -168,11 +163,9 @@ const useFetchFilteredCocktails = () => {
 
             return sanityClient
                 .fetch(
-                    `*[_type == "Cocktail"]{
+                    `*[_type == "Cocktail" && isDisabled != true]{
               ${GroqQueries.COCKTAIL}
-           }`,{
-                        liquorTypeId:liquorTypes
-                    })
+           }`)
                 .then((data: SanityCocktailType[]) => {
                     return data
                 })
@@ -194,4 +187,123 @@ const useFetchFilteredCocktails = () => {
 //         })
 // }
 
-export default {useFetchPageBySlugQuery, useFetchMenuBySlugQuery, useFetchAllFlashCards: useFetchAllCocktails, useFetchAllBarIngredients, useFetchAllLiquorTypes, useFetchFilteredIngredients, useFetchFilteredCocktails}
+const useFetchSearchedCocktails = () => {
+
+    // const liquorTypes = searchContext.searchFilters
+    // console.log("fetching cocktails filtered by liquor type ", liquorTypes)
+
+    const searchContext = useContext(SearchContext)
+    const liquorTypes = searchContext.searchFilters
+
+    return useQuery(
+        ["search-cocktails-by-criteria"],
+        () => {
+            const searchString = searchContext.searchString
+            //  if(liquorTypes && liquorTypes.length > 0 )
+            //      return sanityClient
+            //          .fetch(
+            //              `*[_type == "Ingredient" && references($liquorTypeId)]{
+            //    ${GroqQueries.INGREDIENT}
+            // }`,{
+            //                  liquorTypeId:liquorTypes
+            //              })
+            //          .then((data: SanityCocktailIngredient[]) => {
+            //              return data
+            //          })
+            if (searchString === undefined)
+                return sanityClient
+                    .fetch(
+                        `*[_type == "Cocktail" && isDisabled != true]{
+              ${GroqQueries.COCKTAIL}
+           }`)
+                    .then((data: SanityCocktailType[]) => {
+                        return data
+                    })
+
+            if (searchString.length > 0)
+                return sanityClient
+                    .fetch(
+                        `*[_type == "Cocktail" && 
+                                title match "*$searchString*" 
+                                && isDisabled != true
+                             ]{
+              ${GroqQueries.COCKTAIL}
+           }`, {
+                            searchString
+                        })
+                    .then((data: SanityCocktailType[]) => {
+                        return data
+                    })
+
+
+        }
+    );
+}
+
+const getProduct = async (searchString?:string, searchFilters?:string[], ingredientFilters?:string[], isAndSearch?:boolean) => {
+    // const [_, searchString, searchFilters] = queryKey
+    const liquorTypes = searchFilters
+    const requiredIngredients = ingredientFilters
+
+    let queryParams = {}
+    let searchStringClause = ""
+    if (searchString && searchString.length > 0) {
+        searchStringClause = ` && title match "*${searchString}*" && isDisabled != true`
+        // queryParams = {
+        //     ...queryParams,
+        // }
+    }
+
+    let liquorTypesClause = ""
+    if (liquorTypes && liquorTypes.length > 0) {
+        liquorTypesClause = " && references(*[references($liquorId)]._id)"
+
+        queryParams = {
+            ...queryParams,
+            liquorId: liquorTypes
+        }
+    }
+
+    let ingredientsClause = undefined
+    if (requiredIngredients && requiredIngredients.length > 0) {
+        if(!ingredientsClause) ingredientsClause=""
+        ingredientsClause = requiredIngredients.reduce((preClause:string, reqIngredient, index)=>{
+            preClause += `(references(*[references('${reqIngredient}')]._id) || references('${reqIngredient}'))`
+
+            if(index < requiredIngredients.length - 1) {
+                if(isAndSearch) {
+                preClause += " && "
+
+                } else {
+
+                preClause += " || "
+                }
+            }
+
+            return preClause
+        },"")
+
+        ingredientsClause = ` && (${ingredientsClause})`
+    }
+
+    return sanityClient
+        .fetch(
+            `*[_type == "Cocktail"${searchStringClause}${ingredientsClause? ingredientsClause:liquorTypesClause}]{
+              ${GroqQueries.COCKTAIL}
+           }`, queryParams)
+        .then((data: SanityCocktailType[]) => {
+            return data
+        })
+}
+
+export default {
+    useFetchPageBySlugQuery,
+    useFetchMenuBySlugQuery,
+    useFetchAllFlashCards: useFetchAllCocktails,
+    useFetchAllBarIngredients,
+    useFetchAllLiquorTypes,
+    useFetchFilteredIngredients,
+    useFetchFilteredCocktails,
+    useFetchSearchedCocktails,
+    getProduct
+}

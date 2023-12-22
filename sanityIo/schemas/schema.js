@@ -1,8 +1,6 @@
 // First, we must import the schema creator
-import createSchema from 'part:@sanity/base/schema-creator'
 
 // Then import schema types from any plugins that might expose them
-import schemaTypes from 'all:part:@sanity/base/schema-type'
 
 // We import object and document schemas
 import blockContent from './blockContent'
@@ -42,57 +40,53 @@ import Instruction from "./bartender/Instruction";
 import MixingGlass from "./bartender/MixingGlass";
 import FlashCardSection from "./bartender/FlashCardSection";
 import LiquorType from "./bartender/LiquorType";
+import MyBar from "./bartender/BarInventory";
 
 // Then we give our schema to the builder and provide the result to Sanity
-export default createSchema({
-    // We name our schema
-    name: 'default',
-    // Then proceed to concatenate our document type
-    // to the ones provided by any plugins that are installed
-    types: schemaTypes.concat([
-        // The following are document types which will appear
-        // in the studio.
-        // When added to this list, object types can be used as
-        // { type: 'typename' } in other document schemas
-        menuContainer,
-        menuGroup,
-        menuItem,
-        homePage,
-        blockContent,
-        contentContainer,
-        lineBreak,
-        column1BlockContent,
-        column2BlockContent,
-        // HomePageSections
-        heroContentSection,
-        whySwitchSection,
-        whySwitchReason,
-        aboutAndaCardSection,
-        cryptoInYourPocketSection,
-        // structured Data
-        structuredDataProduct,
-        structuredDataOffer,
-        structuredDataSeller,
-        structuredDataEvent,
-        coldLead,
-        // transform hw sections
-        ThwHeroContentSection,
-        ThwPositivePsychology,
-        ThwMottoSection,
-        ThwAboutProprietor,
-        ThwServicesSection,
-        transformServiceItem,
-        ThwWhyChooseUsSection,
-        transformWhyChooseUsItem,
-        ThwContactUs,
-        ThwUnderConstructionPage,
-        Cocktail,
-        Garnish,
-        Glass,
-        Ingredient,
-        Instruction,
-        MixingGlass,
-        FlashCardSection,
-        LiquorType,
-    ]),
-})
+export default [
+    // The following are document types which will appear
+    // in the studio.
+    // When added to this list, object types can be used as
+    // { type: 'typename' } in other document schemas
+    menuContainer,
+    menuGroup,
+    menuItem,
+    homePage,
+    blockContent,
+    contentContainer,
+    lineBreak,
+    column1BlockContent,
+    column2BlockContent,
+    // HomePageSections
+    heroContentSection,
+    whySwitchSection,
+    whySwitchReason,
+    aboutAndaCardSection,
+    cryptoInYourPocketSection,
+    // structured Data
+    structuredDataProduct,
+    structuredDataOffer,
+    structuredDataSeller,
+    structuredDataEvent,
+    coldLead,
+    // transform hw sections
+    ThwHeroContentSection,
+    ThwPositivePsychology,
+    ThwMottoSection,
+    ThwAboutProprietor,
+    ThwServicesSection,
+    transformServiceItem,
+    ThwWhyChooseUsSection,
+    transformWhyChooseUsItem,
+    ThwContactUs,
+    ThwUnderConstructionPage,
+    Cocktail,
+    Garnish,
+    Glass,
+    Ingredient,
+    Instruction,
+    MixingGlass,
+    FlashCardSection,
+    LiquorType,
+    MyBar
+]

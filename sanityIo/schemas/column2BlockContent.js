@@ -10,15 +10,15 @@ export default {
       type: 'string',
       name: 'sectionTitle'
     },
-    {
-      title: 'column 1',
-      type: 'column1BlockContent',
-      name: 'column1'
-    },
-    {
-      title: 'column 2',
-      type: 'column1BlockContent',
-      name: 'column2'
-    }
+    // {
+    //   title: 'column 1',
+    //   type: 'column1BlockContent',
+    //   name: 'column1'
+    // },
+    // {
+    //   title: 'column 2',
+    //   type: 'column1BlockContent',
+    //   name: 'column2'
+    // }
   ]
 }
